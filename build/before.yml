@@ -44,3 +44,29 @@ jobs:
           backendAzureRmStorageAccountName: stbfdevtf
           commandOptions: -no-color -input=false
           allowTelemetryCollection: false
+
+      - task: TerraformCLI@2
+        displayName: "Terraform: validate"
+        inputs:
+          command: validate
+          workingDirectory: legacy
+          commandOptions: -no-color -input=false
+          allowTelemetryCollection: false
+
+      - task: TerraformCLI@2
+        displayName: "Terraform: plan"
+        inputs:
+          command: plan
+          workingDirectory: legacy
+          commandOptions: -no-color -input=false
+          publishPlanResults: "Dev"
+          allowTelemetryCollection: false
+
+      - task: TerraformCLI@2
+        displayName: "Terraform: apply"
+        condition: and(succeeded(), eq(variables['TERRAFORM_PLAN_HAS_CHANGES'], 'true'))
+        inputs:
+          command: apply
+          workingDirectory: legacy
+          commandOptions: -no-color -input=false -auto-approve
+          allowTelemetryCollection: false
