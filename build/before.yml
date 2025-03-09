@@ -50,7 +50,7 @@ jobs:
         inputs:
           command: validate
           workingDirectory: legacy
-          commandOptions: -no-color -input=false
+          commandOptions: -no-color
           allowTelemetryCollection: false
 
       - task: TerraformCLI@2
