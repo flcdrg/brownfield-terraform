@@ -49,17 +49,18 @@ jobs:
         displayName: "Terraform: validate"
         inputs:
           command: validate
-          workingDirectory: legacy
           commandOptions: -no-color
+          workingDirectory: legacy
           allowTelemetryCollection: false
 
       - task: TerraformCLI@2
         displayName: "Terraform: plan"
         inputs:
           command: plan
-          workingDirectory: legacy
+          environmentServiceName: "sp-brownfield-dev-australiaeast"
           commandOptions: -no-color -input=false
           publishPlanResults: "Dev"
+          workingDirectory: legacy
           allowTelemetryCollection: false
 
       - task: TerraformCLI@2
@@ -67,6 +68,7 @@ jobs:
         condition: and(succeeded(), eq(variables['TERRAFORM_PLAN_HAS_CHANGES'], 'true'))
         inputs:
           command: apply
-          workingDirectory: legacy
+          environmentServiceName: "sp-brownfield-dev-australiaeast"
           commandOptions: -no-color -input=false -auto-approve
+          workingDirectory: legacy
           allowTelemetryCollection: false
