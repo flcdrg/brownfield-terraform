@@ -1,0 +1,6 @@
+{
+    "recommendations": [
+        "hashicorp.terraform",
+        "ms-azure-devops.azure-pipelines"
+    ]
+}
