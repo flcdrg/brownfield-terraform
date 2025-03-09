@@ -12,19 +12,13 @@ jobs:
   - job: build
     steps:
       - checkout: self
-      - script: echo "Hello, world!"
-
-      - task: TerraformInstaller@2
-        displayName: "Terraform: Installer"
-        inputs:
-          terraformVersion: "latest"
 
       - task: AzureCLI@2
-        displayName: "Azure: Login"
+        displayName: "Azure: Create state container"
         inputs:
           azureSubscription: "sp-brownfield-dev-australiaeast"
           scriptType: bash
-          scriptLocation: inline
+          scriptLocation: inlineScript
           inlineScript: |
             # Check if container exists
 
@@ -33,6 +27,11 @@ jobs:
             else
               echo "Container 'tfstate' already exists."
             fi
+
+      - task: TerraformInstaller@2
+        displayName: "Terraform: Installer"
+        inputs:
+          terraformVersion: "latest"
 
       - task: TerraformCLI@2
         displayName: "Terraform: init"
