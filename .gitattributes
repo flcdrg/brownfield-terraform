@@ -1,2 +1,8 @@
 * text=auto
 *.hcl text eol=lf
+*.json eol=lf
+*.yaml eol=lf
+.npmrc eol=lf
+*.vue eol=lf
+*.ts eol=lf
+*.toml eol=lf

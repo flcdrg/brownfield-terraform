@@ -37,3 +37,5 @@ override.tf.json
 terraform.rc
 
 credential.json
+
+node_modules/
