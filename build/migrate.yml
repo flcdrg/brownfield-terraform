@@ -20,7 +20,7 @@ pool:
 
 jobs:
   - ${{ each Environment in parameters.Environments }}:
-      - job: check
+      - job: check_${{ Environment.name }}
         displayName: "Check ${{ Environment.name }}"
         steps:
           - checkout: self
