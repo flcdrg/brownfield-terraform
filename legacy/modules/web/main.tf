@@ -6,7 +6,7 @@ resource "azurerm_app_service" "appservice" {
   resource_group_name = var.resource_group_name
   app_service_plan_id = var.app_service_plan_id
   site_config {
-    linux_fx_version = "DOTNETCORE:6.0"
+    linux_fx_version = "DOTNETCORE|6.0"
     min_tls_version          = "1.0"
   }
 
