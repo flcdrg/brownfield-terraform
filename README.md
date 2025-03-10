@@ -66,3 +66,9 @@ Back in HCP Terraform, set the following environment variables in your workspace
 `ARM_TENANT_ID` = Azure tenant id
 
 Repeat this for test and prod
+
+### In `terraform` directory
+
+1. Run `terraform login`
+2. Paste the token from the browser session into the terminal
+3. Run `terraform init` to initialise the workspace locally
