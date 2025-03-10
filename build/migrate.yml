@@ -1,3 +1,13 @@
+parameters:
+  - name: Environments
+    displayName: "Environments - Do not change this in the UI"
+    type: object
+    default:
+      - name: "Dev"
+        backendServiceArm: "sp-brownfield-dev-australiaeast"
+        backendAzureRmResourceGroupName: "rg-brownfield-dev-australiaeast"
+        backendAzureRmStorageAccountName: "stbfdevtf"
+
 trigger:
   branches:
     include:
@@ -9,73 +19,75 @@ pool:
   vmImage: ubuntu-latest
 
 jobs:
-  - job: build
-    steps:
-      - checkout: self
+  - ${{ each Environment in parameters.Environments }}:
+      - job: check
+        displayName: "Check ${{ Environment.name }}"
+        steps:
+          - checkout: self
 
-      - task: TerraformInstaller@2
-        displayName: "Terraform: Installer"
-        inputs:
-          terraformVersion: "latest"
+          - task: TerraformInstaller@2
+            displayName: "Terraform: Installer"
+            inputs:
+              terraformVersion: "latest"
 
-      - task: TerraformCLI@2
-        displayName: "Terraform: init"
-        inputs:
-          command: init
-          workingDirectory: legacy
-          backendType: azurerm
-          backendServiceArm: sp-brownfield-dev-australiaeast
-          backendAzureRmResourceGroupName: rg-brownfield-dev-australiaeast
-          backendAzureRmStorageAccountName: stbfdevtf
-          commandOptions: -no-color -input=false
-          allowTelemetryCollection: false
+          - task: TerraformCLI@2
+            displayName: "Terraform: init"
+            inputs:
+              command: init
+              workingDirectory: legacy
+              backendType: azurerm
+              backendServiceArm: ${{ Environment.backendServiceArm }}
+              backendAzureRmResourceGroupName: ${{ Environment.backendAzureRmResourceGroupName }}
+              backendAzureRmStorageAccountName: ${{ Environment.backendAzureRmStorageAccountName }}
+              commandOptions: -no-color -input=false
+              allowTelemetryCollection: false
 
-      #- ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/main') }}:
-      # Copy state from Terraform Cloud to local, so we can modify it without affecting the remote state
-      - script: |
-          terraform state pull > $(Build.ArtifactStagingDirectory)/pull.tfstate
-        displayName: "Script: Extract legacy state"
-        workingDirectory: legacy
+          #- ${{ if ne(variables['Build.SourceBranch'], 'refs/heads/main') }}:
+          # Copy state from Terraform Cloud to local, so we can modify it without affecting the remote state
+          - script: |
+              terraform state pull > $(Build.ArtifactStagingDirectory)/pull.tfstate
+            displayName: "Script: Extract legacy state"
+            workingDirectory: legacy
 
-      - script: |
-          # Write multiple lines of text to local file using bash
-          cat > backend.tf <<EOF
-          terraform {
-            backend "local" {
-              path = "$(Build.ArtifactStagingDirectory)/pull.tfstate"
-            }
-          }
-          EOF
+          - script: |
+              # Write multiple lines of text to local file using bash
+              cat > backend.tf <<EOF
+              terraform {
+                backend "local" {
+                  path = "$(Build.ArtifactStagingDirectory)/pull.tfstate"
+                }
+              }
+              EOF
 
-          # Reset Terraform to use local backend
-          terraform init -reconfigure -no-color -input=false
-        displayName: "Script: Use Terraform Local Backend"
-        workingDirectory: terraform     
+              # Reset Terraform to use local backend
+              terraform init -reconfigure -no-color -input=false
+            displayName: "Script: Use Terraform Local Backend"
+            workingDirectory: terraform
 
-      - task: TerraformCLI@2
-        displayName: "Terraform: validate"
-        inputs:
-          command: validate
-          commandOptions: -no-color
-          workingDirectory: terraform
-          allowTelemetryCollection: false
+          - task: TerraformCLI@2
+            displayName: "Terraform: validate"
+            inputs:
+              command: validate
+              commandOptions: -no-color
+              workingDirectory: terraform
+              allowTelemetryCollection: false
 
-      - task: TerraformCLI@2
-        displayName: "Terraform: plan"
-        inputs:
-          command: plan
-          environmentServiceName: "sp-brownfield-dev-australiaeast"
-          commandOptions: -no-color -input=false
-          publishPlanResults: "Dev"
-          workingDirectory: terraform
-          allowTelemetryCollection: false
+          - task: TerraformCLI@2
+            displayName: "Terraform: plan"
+            inputs:
+              command: plan
+              environmentServiceName: "sp-brownfield-dev-australiaeast"
+              commandOptions: -no-color -input=false
+              publishPlanResults: ${{ Environment.name }}
+              workingDirectory: terraform
+              allowTelemetryCollection: false
 
-      # - task: TerraformCLI@2
-      #   displayName: "Terraform: apply"
-      #   condition: and(succeeded(), eq(variables['TERRAFORM_PLAN_HAS_CHANGES'], 'true'))
-      #   inputs:
-      #     command: apply
-      #     environmentServiceName: "sp-brownfield-dev-australiaeast"
-      #     commandOptions: -no-color -input=false -auto-approve
-      #     workingDirectory: terraform
-      #     allowTelemetryCollection: false
+          # - task: TerraformCLI@2
+          #   displayName: "Terraform: apply"
+          #   condition: and(succeeded(), eq(variables['TERRAFORM_PLAN_HAS_CHANGES'], 'true'))
+          #   inputs:
+          #     command: apply
+          #     environmentServiceName: "sp-brownfield-dev-australiaeast"
+          #     commandOptions: -no-color -input=false -auto-approve
+          #     workingDirectory: terraform
+          #     allowTelemetryCollection: false
