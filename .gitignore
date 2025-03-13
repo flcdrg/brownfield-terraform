@@ -39,3 +39,6 @@ terraform.rc
 credential.json
 
 node_modules/
+dist
+export
+exported

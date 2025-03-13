@@ -1,3 +1,25 @@
+parameters:
+  - name: Environment
+    type: string
+    values:
+      - "dev"
+      - "test"
+      - "prod"
+  - name: Environments
+    type: object
+    default:
+      - name: "dev"
+        backendServiceArm: "sp-brownfield-dev-australiaeast"
+        backendAzureRmResourceGroupName: "rg-brownfield-dev-australiaeast"
+        backendAzureRmStorageAccountName: "stbfdevtf"
+      - name: "test"
+        backendServiceArm: "sp-brownfield-test-australiaeast"
+        backendAzureRmResourceGroupName: "rg-brownfield-test-australiaeast"
+        backendAzureRmStorageAccountName: "stbftesttf"
+      - name: "prod"
+        backendServiceArm: "sp-brownfield-prod-australiaeast"
+        backendAzureRmResourceGroupName: "rg-brownfield-prod-australiaeast"
+        backendAzureRmStorageAccountName: "stbfprodtf"
 trigger: none
 
 pr: none
@@ -6,66 +28,69 @@ pool:
   vmImage: ubuntu-latest
 
 jobs:
-  - job: build
-    steps:
-      - checkout: self
+  - ${{ each Environment in parameters.Environments }}:
+      - ${{ if eq(parameters.Environment, Environment.name) }}:
+          - job: build_${{ Environment.name }}
+            displayName: "Terraform ${{ Environment.name }}"
+            steps:
+              - checkout: self
 
-      - task: AzureCLI@2
-        displayName: "Azure: Create state container"
-        inputs:
-          azureSubscription: "sp-brownfield-dev-australiaeast"
-          scriptType: bash
-          scriptLocation: inlineScript
-          inlineScript: |
-            # Check if container exists
+              - task: AzureCLI@2
+                displayName: "Azure: Create state container"
+                inputs:
+                  azureSubscription: ${{ Environment.backendServiceArm }}
+                  scriptType: bash
+                  scriptLocation: inlineScript
+                  inlineScript: |
+                    # Check if container exists
 
-            if ! az storage container show --name tfstate --account-name stbfdevtf --resource-group rg-brownfield-dev-australiaeast; then
-              az storage container create --name tfstate --account-name stbfdevtf --resource-group rg-brownfield-dev-australiaeast
-            else
-              echo "Container 'tfstate' already exists."
-            fi
+                    if ! az storage container show --name tfstate --account-name ${{ Environment.backendAzureRmStorageAccountName }} --resource-group ${{ Environment.backendAzureRmResourceGroupName }}; then
+                      az storage container create --name tfstate --account-name ${{ Environment.backendAzureRmStorageAccountName }} --resource-group ${{ Environment.backendAzureRmResourceGroupName }}
+                    else
+                      echo "Container 'tfstate' already exists."
+                    fi
 
-      - task: TerraformInstaller@2
-        displayName: "Terraform: Installer"
-        inputs:
-          terraformVersion: "latest"
+              - task: TerraformInstaller@2
+                displayName: "Terraform: Installer"
+                inputs:
+                  terraformVersion: "latest"
 
-      - task: TerraformCLI@2
-        displayName: "Terraform: init"
-        inputs:
-          command: init
-          workingDirectory: legacy
-          backendType: azurerm
-          backendServiceArm: sp-brownfield-dev-australiaeast
-          backendAzureRmResourceGroupName: rg-brownfield-dev-australiaeast
-          backendAzureRmStorageAccountName: stbfdevtf
-          commandOptions: -no-color -input=false
-          allowTelemetryCollection: false
+              - task: TerraformCLI@2
+                displayName: "Terraform: init"
+                inputs:
+                  command: init
+                  workingDirectory: legacy
+                  backendType: azurerm
+                  backendServiceArm: ${{ Environment.backendServiceArm }}
+                  backendAzureRmResourceGroupName: ${{ Environment.backendAzureRmResourceGroupName }}
+                  backendAzureRmStorageAccountName: ${{ Environment.backendAzureRmStorageAccountName }}
+                  commandOptions: -no-color -input=false
+                  allowTelemetryCollection: false
 
-      - task: TerraformCLI@2
-        displayName: "Terraform: validate"
-        inputs:
-          command: validate
-          commandOptions: -no-color
-          workingDirectory: legacy
-          allowTelemetryCollection: false
+              - task: TerraformCLI@2
+                displayName: "Terraform: validate"
+                inputs:
+                  command: validate
+                  commandOptions: -no-color
+                  workingDirectory: legacy
+                  allowTelemetryCollection: false
 
-      - task: TerraformCLI@2
-        displayName: "Terraform: plan"
-        inputs:
-          command: plan
-          environmentServiceName: "sp-brownfield-dev-australiaeast"
-          commandOptions: -no-color -input=false
-          publishPlanResults: "Dev"
-          workingDirectory: legacy
-          allowTelemetryCollection: false
+              - task: TerraformCLI@2
+                displayName: "Terraform: plan"
+                inputs:
+                  command: plan
+                  environmentServiceName: ${{ Environment.backendServiceArm }}
+                  commandOptions: -no-color -input=false
+                  publishPlanResults: ${{ Environment.name }}
+                  workingDirectory: legacy
+                  allowTelemetryCollection: false
 
-      - task: TerraformCLI@2
-        displayName: "Terraform: apply"
-        condition: and(succeeded(), eq(variables['TERRAFORM_PLAN_HAS_CHANGES'], 'true'))
-        inputs:
-          command: apply
-          environmentServiceName: "sp-brownfield-dev-australiaeast"
-          commandOptions: -no-color -input=false -auto-approve
-          workingDirectory: legacy
-          allowTelemetryCollection: false
+              - task: TerraformCLI@2
+                displayName: "Terraform: apply"
+                condition: and(succeeded(), eq(variables['TERRAFORM_PLAN_HAS_CHANGES'], 'true'))
+                inputs:
+                  command: apply
+                  environmentServiceName: ${{ Environment.backendServiceArm }}
+                  commandOptions: -no-color -input=false -auto-approve
+                  workingDirectory: legacy
+                  allowTelemetryCollection: false
