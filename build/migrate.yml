@@ -7,6 +7,14 @@ parameters:
         backendServiceArm: "sp-brownfield-dev-australiaeast"
         backendAzureRmResourceGroupName: "rg-brownfield-dev-australiaeast"
         backendAzureRmStorageAccountName: "stbfdevtf"
+      - name: "Test"
+        backendServiceArm: "sp-brownfield-test-australiaeast"
+        backendAzureRmResourceGroupName: "rg-brownfield-test-australiaeast"
+        backendAzureRmStorageAccountName: "stbftesttf"
+      - name: "Prod"
+        backendServiceArm: "sp-brownfield-prod-australiaeast"
+        backendAzureRmResourceGroupName: "rg-brownfield-prod-australiaeast"
+        backendAzureRmStorageAccountName: "stbfprodtf"
 
 trigger: none
 
@@ -73,7 +81,7 @@ jobs:
             displayName: "Terraform: plan"
             inputs:
               command: plan
-              environmentServiceName: "sp-brownfield-dev-australiaeast"
+              environmentServiceName: ${{ Environment.backendServiceArm }}
               commandOptions: -no-color -input=false
               publishPlanResults: ${{ Environment.name }}
               workingDirectory: terraform
