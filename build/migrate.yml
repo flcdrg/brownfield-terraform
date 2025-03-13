@@ -35,6 +35,14 @@ jobs:
             inputs:
               terraformVersion: "latest"
 
+          - script: |
+              # Fail on errors
+              set -e
+
+              cp environment.${{ lower(Environment.name) }}.tfvars environment.auto.tfvars
+            displayName: "Script: Copy environment.auto.tfvars"
+            workingDirectory: legacy
+
           - task: TerraformCLI@2
             displayName: "Terraform: init"
             inputs:
@@ -53,6 +61,14 @@ jobs:
               terraform state pull > $(Build.ArtifactStagingDirectory)/pull.tfstate
             displayName: "Script: Extract legacy state"
             workingDirectory: legacy
+
+          - script: |
+              # Fail on errors
+              set -e
+
+              cp environment.${{ lower(Environment.name) }}.tfvars environment.auto.tfvars
+            displayName: "Script: Copy environment.auto.tfvars"
+            workingDirectory: terraform
 
           - script: |
               # Write multiple lines of text to local file using bash

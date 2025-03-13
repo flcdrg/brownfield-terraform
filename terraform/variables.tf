@@ -3,3 +3,7 @@ variable "environment" {
   type        = string
   default     = "dev"
 }
+variable "resourcegroup_name" {
+  description = "The name of the resource group"
+  type        = string
+}
