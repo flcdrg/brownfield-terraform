@@ -55,6 +55,13 @@ jobs:
                 inputs:
                   terraformVersion: "latest"
 
+              - script: |
+                  # Fail on errors
+                  set -e
+
+                  cp environment.${{ lower(Environment.name) }}.tfvars environment.auto.tfvars
+                displayName: "Script: Copy environment.auto.tfvars"
+
               - task: TerraformCLI@2
                 displayName: "Terraform: init"
                 inputs:

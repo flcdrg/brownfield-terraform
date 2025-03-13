@@ -8,10 +8,7 @@ parameters:
         backendAzureRmResourceGroupName: "rg-brownfield-dev-australiaeast"
         backendAzureRmStorageAccountName: "stbfdevtf"
 
-trigger:
-  branches:
-    include:
-      - main
+trigger: none
 
 pr: none
 
