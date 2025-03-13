@@ -44,7 +44,7 @@ jobs:
                   inlineScript: |
                     # Check if container exists
 
-                    if ! az storage container show --name tfstate --account-name ${{ Environment.backendAzureRmStorageAccountName }} --resource-group ${{ Environment.backendAzureRmResourceGroupName }}; then
+                    if ! az storage container show --name tfstate --account-name ${{ Environment.backendAzureRmStorageAccountName }}; then
                       az storage container create --name tfstate --account-name ${{ Environment.backendAzureRmStorageAccountName }} --resource-group ${{ Environment.backendAzureRmResourceGroupName }}
                     else
                       echo "Container 'tfstate' already exists."
@@ -61,6 +61,7 @@ jobs:
 
                   cp environment.${{ lower(Environment.name) }}.tfvars environment.auto.tfvars
                 displayName: "Script: Copy environment.auto.tfvars"
+                workingDirectory: legacy
 
               - task: TerraformCLI@2
                 displayName: "Terraform: init"
