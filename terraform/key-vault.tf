@@ -2,7 +2,7 @@ locals {
   key_vault_name = {
     dev  = "kv-bf-dev-je7v-aue"
     test = "kv-bf-test-u48x-aue"
-    prod = "kv-bf-prod-je7v-aue"
+    prod = "kv-bf-prod-0meq-aue"
   }
 }
 
