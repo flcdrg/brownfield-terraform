@@ -8,10 +8,10 @@ locals {
 
 import {
   id = "/subscriptions/${data.azurerm_client_config.client.subscription_id}/resourceGroups/${data.azurerm_resource_group.group.name}/providers/Microsoft.KeyVault/vaults/${local.key_vault_name[var.environment]}"
-  to = azurerm_key_vault.res-3
+  to = azurerm_key_vault.kv
 }
 
-resource "azurerm_key_vault" "res-3" {
+resource "azurerm_key_vault" "kv" {
   location                   = data.azurerm_resource_group.group.location
   name                       = local.key_vault_name[var.environment]
   resource_group_name        = data.azurerm_resource_group.group.name
