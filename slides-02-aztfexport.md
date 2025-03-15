@@ -13,7 +13,7 @@ variable "environment" {
 # Data resources
 
 ```hcl
-data "azurerm_client_config" "client" {
+data "azurerm_client_config" "current" {
 }
 
 data "azurerm_resource_group" "group" {
@@ -125,3 +125,107 @@ resource "azurerm_key_vault" "kv" {
 * KV names
 * resource names
 -->
+
+---
+
+# Output
+
+```text {*}{maxHeight: '80%' }
+ # azurerm_key_vault.kv will be imported
+    resource "azurerm_key_vault" "kv" {
+        access_policy                   = [
+            {
+                tenant_id               = "51b792d5-bfd3-4dbd-82d2-f42aef2fa7ee"
+            },
+            {
+                application_id          = null
+                certificate_permissions = [
+                    "all",
+                ]
+                key_permissions         = [
+                    "all",
+                ]
+                object_id               = "1b31b7c8-2237-43ae-8969-7a4332bcde03"
+                secret_permissions      = [
+                    "all",
+                ]
+                storage_permissions     = [
+                    "all",
+                ]
+                tenant_id               = "51b792d5-bfd3-4dbd-82d2-f42aef2fa7ee"
+            },
+        ]
+        enable_rbac_authorization       = false
+        enabled_for_deployment          = false
+        enabled_for_disk_encryption     = false
+        enabled_for_template_deployment = false
+        id                              = "/subscriptions/7037474c-e5fd-4336-8ffa-ff8ef9d34930/resourceGroups/rg-brownfield-dev-australiaeast/providers/Microsoft.KeyVault/vaults/kv-bf-dev-je7v-aue"
+        location                        = "australiaeast"
+        name                            = "kv-bf-dev-je7v-aue"
+        public_network_access_enabled   = true
+        purge_protection_enabled        = false
+        resource_group_name             = "rg-brownfield-dev-australiaeast"
+        sku_name                        = "standard"
+        soft_delete_retention_days      = 7
+        tags                            = {}
+        tenant_id                       = "51b792d5-bfd3-4dbd-82d2-f42aef2fa7ee"
+        vault_uri                       = "https://kv-bf-dev-je7v-aue.vault.azure.net/"
+
+        network_acls {
+            bypass                     = "AzureServices"
+            default_action             = "Allow"
+            ip_rules                   = []
+            virtual_network_subnet_ids = []
+        }
+    }
+```
+
+---
+
+# Key Vault access policies
+
+* Not included in `aztfexport` output
+* Need to add manually
+
+![KV Access policies](./portal-kv-access-policies.png)
+
+---
+
+# Key Vault access policy import
+
+[Import notes for `azurerm_key_vault_access_policy`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy#import)
+
+````md magic-move {lines: true}
+
+```hcl {*}
+resource "azurerm_key_vault_access_policy" "pipeline_spn" {
+  key_vault_id            = azurerm_key_vault.kv.id
+  tenant_id               = data.azurerm_client_config.current.tenant_id
+  object_id               = data.azurerm_client_config.current.object_id
+  certificate_permissions = ["Get", "List", "Update", "Create", "Import", "Delete", "Recover", "Backup", "Restore", "ManageContacts", "ManageIssuers", "GetIssuers", "ListIssuers", "SetIssuers", "DeleteIssuers", "Purge"]
+  secret_permissions      = ["Get", "List", "Set", "Delete", "Recover", "Backup", "Restore", "Purge"]
+  key_permissions         = ["Get", "List", "Update", "Create", "Import", "Delete", "Recover", "Backup", "Restore", "Decrypt", "Encrypt", "UnwrapKey", "WrapKey", "Verify", "Sign", "Purge", "Release", "Rotate", "GetRotationPolicy", "SetRotationPolicy"]
+  storage_permissions     = ["Backup", "Delete", "DeleteSAS", "Get", "GetSAS", "List", "ListSAS", "Purge", "Recover", "RegenerateKey", "Restore", "Set", "SetSAS", "Update"]
+}
+
+```
+
+```hcl {1-4,*}
+import {
+  id = "${azurerm_key_vault.kv.id}/objectId/${data.azurerm_client_config.current.object_id}"
+  to = azurerm_key_vault_access_policy.pipeline_spn
+}
+
+resource "azurerm_key_vault_access_policy" "pipeline_spn" {
+  key_vault_id            = azurerm_key_vault.kv.id
+  tenant_id               = data.azurerm_client_config.current.tenant_id
+  object_id               = data.azurerm_client_config.current.object_id
+  certificate_permissions = ["Get", "List", "Update", "Create", "Import", "Delete", "Recover", "Backup", "Restore", "ManageContacts", "ManageIssuers", "GetIssuers", "ListIssuers", "SetIssuers", "DeleteIssuers", "Purge"]
+  secret_permissions      = ["Get", "List", "Set", "Delete", "Recover", "Backup", "Restore", "Purge"]
+  key_permissions         = ["Get", "List", "Update", "Create", "Import", "Delete", "Recover", "Backup", "Restore", "Decrypt", "Encrypt", "UnwrapKey", "WrapKey", "Verify", "Sign", "Purge", "Release", "Rotate", "GetRotationPolicy", "SetRotationPolicy"]
+  storage_permissions     = ["Backup", "Delete", "DeleteSAS", "Get", "GetSAS", "List", "ListSAS", "Purge", "Recover", "RegenerateKey", "Restore", "Set", "SetSAS", "Update"]
+}
+
+```
+
+````
