@@ -210,7 +210,7 @@ resource "azurerm_key_vault_access_policy" "pipeline_spn" {
 
 ```
 
-```hcl {1-4,*}
+```hcl {1-4|*}
 import {
   id = "${azurerm_key_vault.kv.id}/objectId/${data.azurerm_client_config.current.object_id}"
   to = azurerm_key_vault_access_policy.pipeline_spn
@@ -244,3 +244,46 @@ check that the id is correct and that it is associated with the provider's
 configured region or endpoint, or use "terraform apply" to create a new
 remote object for this resource.
 ```
+
+---
+
+# So make that import conditional too
+
+````md magic-move {lines: true}
+
+```hcl {*}
+import {
+  id = "${azurerm_key_vault.kv.id}/objectId/${data.azurerm_client_config.current.object_id}"
+  to = azurerm_key_vault_access_policy.pipeline_spn
+}
+
+resource "azurerm_key_vault_access_policy" "pipeline_spn" {
+  key_vault_id            = azurerm_key_vault.kv.id
+  tenant_id               = data.azurerm_client_config.current.tenant_id
+  object_id               = data.azurerm_client_config.current.object_id
+  ...
+}
+
+```
+
+```hcl {2-5|11|7|*}
+import {
+  for_each = contains(["dev", "prod"], var.environment) ? {
+    enabled = true
+    } : {
+  }
+  id = "${azurerm_key_vault.kv.id}/objectId/${data.azurerm_client_config.current.object_id}"
+  to = azurerm_key_vault_access_policy.pipeline_spn[0]
+}
+
+resource "azurerm_key_vault_access_policy" "pipeline_spn" {
+  count = contains(["dev", "prod"], var.environment) ? 1 : 0
+
+  key_vault_id            = azurerm_key_vault.kv.id
+  tenant_id               = data.azurerm_client_config.current.tenant_id
+  object_id               = data.azurerm_client_config.current.object_id
+  ...
+}
+```
+
+````

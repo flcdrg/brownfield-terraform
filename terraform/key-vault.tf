@@ -21,11 +21,17 @@ resource "azurerm_key_vault" "kv" {
 }
 
 import {
+  for_each = contains(["dev", "prod"], var.environment) ? {
+    enabled = true
+    } : {
+  }
   id = "${azurerm_key_vault.kv.id}/objectId/${data.azurerm_client_config.current.object_id}"
-  to = azurerm_key_vault_access_policy.pipeline_spn
+  to = azurerm_key_vault_access_policy.pipeline_spn[0]
 }
 
 resource "azurerm_key_vault_access_policy" "pipeline_spn" {
+  count = contains(["dev", "prod"], var.environment) ? 1 : 0
+
   key_vault_id            = azurerm_key_vault.kv.id
   tenant_id               = data.azurerm_client_config.current.tenant_id
   object_id               = data.azurerm_client_config.current.object_id
