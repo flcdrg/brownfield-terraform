@@ -1,5 +1,13 @@
 {
     "files.associations": {
         "**/build/*.yml": "azure-pipelines"
-    }
+    },
+    "cSpell.words": [
+        "australiaeast",
+        "aztfexport",
+        "slidev",
+        "stbfdev",
+        "stbfdevtf",
+        "unocss"
+    ]
 }

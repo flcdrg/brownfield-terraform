@@ -1,0 +1,9 @@
+{
+    "MD003": false, // Allow header style
+    "MD013": false, // Allow line length > 80
+    "MD022": false, // Don't require blank lines in front-matter
+    "MD025": false, // Allow multiple top level headers
+    "MD026": false, // Allow trailing punctuation in header
+    "MD033": false, // Allow inline HTML
+    "MD045": false // Don't require alt text for images
+}

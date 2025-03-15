@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "hashicorp.terraform",
-        "ms-azure-devops.azure-pipelines"
+        "ms-azure-devops.azure-pipelines",
+        "antfu.slidev"
     ]
 }
