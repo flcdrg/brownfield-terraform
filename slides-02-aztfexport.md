@@ -246,3 +246,9 @@ aztfexport mapping-file \
 
 * For Test and Prod (and any other environments)
 * Look for any new resources that don't exist in dev
+
+---
+
+# Alternatives
+
+* Azure Portal export to Terraform (currently private preview)

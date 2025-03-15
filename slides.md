@@ -3,11 +3,8 @@
 theme: default
 title: Order from chaos - Importing brownfield Azure applications into Terraform
 info: |
-  
+  Shows how to import existing Azure resources into Terraform state
 
-# apply unocss classes to the current slide
-# class: text-center
-# https://sli.dev/features/drawing
 drawings:
   persist: false
 # slide transition: https://sli.dev/guide/animations.html#slide-transitions
