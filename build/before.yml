@@ -20,6 +20,7 @@ parameters:
         backendServiceArm: "sp-brownfield-prod-australiaeast"
         backendAzureRmResourceGroupName: "rg-brownfield-prod-australiaeast"
         backendAzureRmStorageAccountName: "stbfprodtf"
+
 trigger: none
 
 pr: none

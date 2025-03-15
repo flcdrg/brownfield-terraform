@@ -3,11 +3,15 @@
         "**/build/*.yml": "azure-pipelines"
     },
     "cSpell.words": [
+        "appservice",
         "australiaeast",
         "aztfexport",
+        "DOTNETCORE",
         "slidev",
         "stbfdev",
         "stbfdevtf",
-        "unocss"
+        "tfstate",
+        "unocss",
+        "webjobs"
     ]
 }

@@ -11,7 +11,7 @@ info: |
 drawings:
   persist: false
 # slide transition: https://sli.dev/guide/animations.html#slide-transitions
-transition: slide-left
+transition: fade
 # enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
 ---
@@ -48,7 +48,7 @@ The last comment block of each slide will be treated as slide notes. It will be 
 * Migrate TF deprecated resources
 
 ---
-src: ./slides/problem/slides.md
+src: ./slides-01-problem.md
 ---
 
 ---
@@ -59,6 +59,16 @@ src: ./slides-02-aztfexport.md
 src: ./slides-03-import.md
 ---
 
+---
+src: ./slides-04-move.md
+---
+
+---
+src: ./slides-05-migrate.md
+---
+
+---
+layout: end
 ---
 
 # Conclusion
