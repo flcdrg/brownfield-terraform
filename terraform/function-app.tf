@@ -1,13 +1,18 @@
+locals {
+  prod_extra    = var.environment == "prod" ? "app-" : ""
+  function_apps = contains(["dev", "prod"], var.environment) ? toset(["func-brownfield-${local.prod_extra}f1-${var.environment}-aue", "func-brownfield-${local.prod_extra}f2-${var.environment}-aue", "func-brownfield-${local.prod_extra}f3-${var.environment}-aue"]) : toset([])
+}
+
 import {
-  for_each = contains(["dev", "prod"], var.environment) ? toset(["f1", "f2", "f3"]) : toset([])
-  id = "/subscriptions/${data.azurerm_client_config.current.subscription_id}/resourceGroups/${data.azurerm_resource_group.group.name}/providers/Microsoft.Web/sites/func-brownfield-${each.key}-${var.environment}-aue"
-  to = azurerm_linux_function_app.func[each.key]
+  for_each = local.function_apps
+  id       = "/subscriptions/${data.azurerm_client_config.current.subscription_id}/resourceGroups/${data.azurerm_resource_group.group.name}/providers/Microsoft.Web/sites/${each.key}"
+  to       = azurerm_linux_function_app.func[each.key]
 }
 
 resource "azurerm_linux_function_app" "func" {
-  for_each = contains(["dev", "prod"], var.environment) ? toset(["f1", "f2", "f3"]) : toset([])
+  for_each = local.function_apps
 
-  name                = "func-brownfield-${each.key}-${var.environment}-aue"
+  name                = each.key
   resource_group_name = data.azurerm_resource_group.group.name
   location            = data.azurerm_resource_group.group.location
 
