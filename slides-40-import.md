@@ -139,10 +139,62 @@ resource "azurerm_key_vault" "kv" {
 # Output
 
 ```text {*}{maxHeight: '80%' }
- # azurerm_key_vault.kv will be imported
+Terraform will perform the following actions:
+
+  # azurerm_key_vault.kv will be imported
     resource "azurerm_key_vault" "kv" {
         access_policy                   = [
             {
+                application_id          = null
+                certificate_permissions = [
+                    "all",
+                ]
+                key_permissions         = [
+                    "all",
+                ]
+                object_id               = "df956735-e715-48f7-80bd-9d371298614d"
+                secret_permissions      = [
+                    "all",
+                ]
+                storage_permissions     = [
+                    "all",
+                ]
+                tenant_id               = "51b792d5-bfd3-4dbd-82d2-f42aef2fa7ee"
+            },
+            {
+                application_id          = null
+                certificate_permissions = []
+                key_permissions         = []
+                object_id               = "463e0df6-c77a-4977-9191-78ab9a27011d"
+                secret_permissions      = [
+                    "List",
+                    "Get",
+                ]
+                storage_permissions     = []
+                tenant_id               = "51b792d5-bfd3-4dbd-82d2-f42aef2fa7ee"
+            },
+            {
+                application_id          = null
+                certificate_permissions = []
+                key_permissions         = []
+                object_id               = "88016e7a-c8ee-43c1-bd3c-d6c4ff2530c0"
+                secret_permissions      = [
+                    "List",
+                    "Get",
+                ]
+                storage_permissions     = []
+                tenant_id               = "51b792d5-bfd3-4dbd-82d2-f42aef2fa7ee"
+            },
+            {
+                application_id          = null
+                certificate_permissions = []
+                key_permissions         = []
+                object_id               = "20465cbf-884a-42a6-a1e8-1212a28859c0"
+                secret_permissions      = [
+                    "Get",
+                    "List",
+                ]
+                storage_permissions     = []
                 tenant_id               = "51b792d5-bfd3-4dbd-82d2-f42aef2fa7ee"
             },
             {
@@ -187,6 +239,12 @@ resource "azurerm_key_vault" "kv" {
         }
     }
 ```
+
+<!--
+
+* there are no +/- indicators show, so we've managed to match the property values correctly.
+* Access policies are included, which still need to be done.
+-->
 
 ---
 
