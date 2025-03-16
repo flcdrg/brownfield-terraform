@@ -17,9 +17,9 @@ importers:
       '@slidev/theme-seriph':
         specifier: latest
         version: 0.25.0
-      styled-qr-code:
-        specifier: ^1.0.0
-        version: 1.0.0
+      qr-code-styling:
+        specifier: ^1.9.1
+        version: 1.9.1
       vue:
         specifier: ^3.5.13
         version: 3.5.13(typescript@5.8.2)
@@ -2145,6 +2145,10 @@ packages:
     resolution: {integrity: sha512-uxFIHU0YlHYhDQtV4R9J6a52SLx28BCjT+4ieh7IGbgwVJWO+km431c4yRlREUAsAmt/uMjQUyQHNEPf0M39CA==}
     engines: {node: '>=6'}
 
+  qr-code-styling@1.9.1:
+    resolution: {integrity: sha512-T/VxQchuZkQwYhIcyyMUmtXHPeDT6lJBYHfqGD5CBDyIjswxS7JZKf443q+SXO1K/9SUswi6JpXEUQ5AoMCpyg==}
+    engines: {node: '>=18.18.0'}
+
   qrcode-generator@1.4.4:
     resolution: {integrity: sha512-HM7yY8O2ilqhmULxGMpcHSF1EhJJ9yBj8gvDEuZ6M+KGJ0YY2hKpnXvRD+hZPLrDVck3ExIGhmPtSdcjC+guuw==}
 
@@ -2330,9 +2334,6 @@ packages:
 
   style-value-types@5.1.2:
     resolution: {integrity: sha512-Vs9fNreYF9j6W2VvuDTP7kepALi7sk0xtk2Tu8Yxi9UoajJdEVpNpCov0HsLTqXvNGKX+Uv09pkozVITi1jf3Q==}
-
-  styled-qr-code@1.0.0:
-    resolution: {integrity: sha512-Tye/Omr8VYUUUCiBE+GNMeJ1Tt0cIsDkLXnQGG6/Xxegyd1021wQKFAFvx/hjaTUrfwpmukWTZfXs3uc/XXN0g==}
 
   stylis@4.3.6:
     resolution: {integrity: sha512-yQ3rwFWRfwNUY7H5vpU0wfdkNSnvnJinhF9830Swlaxl03zsOjCfmX0ugac+3LtK0lYSgwL/KXc8oYL3mG4YFQ==}
@@ -5368,6 +5369,10 @@ snapshots:
 
   punycode.js@2.3.1: {}
 
+  qr-code-styling@1.9.1:
+    dependencies:
+      qrcode-generator: 1.4.4
+
   qrcode-generator@1.4.4: {}
 
   quansync@0.2.8: {}
@@ -5561,10 +5566,6 @@ snapshots:
     dependencies:
       hey-listen: 1.0.8
       tslib: 2.4.0
-
-  styled-qr-code@1.0.0:
-    dependencies:
-      qrcode-generator: 1.4.4
 
   stylis@4.3.6: {}
 

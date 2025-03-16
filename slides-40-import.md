@@ -259,11 +259,41 @@ Terraform will perform the following actions:
 
 # Key Vault access policy import
 
-[Import notes for `azurerm_key_vault_access_policy`](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy#import)
+Import notes for `azurerm_key_vault_access_policy`
+
+<QRCode value="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy" bottomAdjust="0px" />
+
+```hcl
+resource "azurerm_key_vault_access_policy" "pipeline_spn" {
+  key_vault_id            = azurerm_key_vault.kv.id
+  tenant_id               = data.azurerm_client_config.current.tenant_id
+  object_id               = data.azurerm_client_config.current.object_id
+  certificate_permissions = [ "all" ]
+  secret_permissions      = [ "all" ]
+  key_permissions         = [ "all" ]
+  storage_permissions     = [ "all" ]
+}
+```
+
+---
+layout: problem
+---
+
+# Error
+
+expected certificate_permissions.0 to be one of ["Get" "List" "Update" "Create" "Import" "Delete" "Recover" "Backup" "Restore" "ManageContacts" "ManageIssuers" "GetIssuers" "ListIssuers" "SetIssuers" "DeleteIssuers" "Purge"], got all
+
+expected secret_permissions.0 to be one of ["Get" "List" "Set" "Delete" "Recover" "Backup" "Restore" "Purge"], got all
+
+expected key_permissions.0 to be one of ["Get" "List" "Update" "Create" "Import" "Delete" "Recover" "Backup" "Restore" "Decrypt" "Encrypt" "UnwrapKey" "WrapKey" "Verify" "Sign" "Purge" "Release" "Rotate" "GetRotationPolicy" "SetRotationPolicy"], got all
+
+expected storage_permissions.0 to be one of ["Backup" "Delete" "DeleteSAS" "Get" "GetSAS" "List" "ListSAS" "Purge" "Recover" "RegenerateKey" "Restore" "Set" "SetSAS" "Update"], got all
+
+---
 
 ````md magic-move {lines: true}
 
-```hcl {*}
+```hcl {5-8}
 resource "azurerm_key_vault_access_policy" "pipeline_spn" {
   key_vault_id            = azurerm_key_vault.kv.id
   tenant_id               = data.azurerm_client_config.current.tenant_id
@@ -273,7 +303,6 @@ resource "azurerm_key_vault_access_policy" "pipeline_spn" {
   key_permissions         = ["Get", "List", "Update", "Create", "Import", "Delete", "Recover", "Backup", "Restore", "Decrypt", "Encrypt", "UnwrapKey", "WrapKey", "Verify", "Sign", "Purge", "Release", "Rotate", "GetRotationPolicy", "SetRotationPolicy"]
   storage_permissions     = ["Backup", "Delete", "DeleteSAS", "Get", "GetSAS", "List", "ListSAS", "Purge", "Recover", "RegenerateKey", "Restore", "Set", "SetSAS", "Update"]
 }
-
 ```
 
 ```hcl {1-4|*}

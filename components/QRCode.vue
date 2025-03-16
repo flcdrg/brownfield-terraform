@@ -7,25 +7,26 @@
 </template>
 
 <script lang="ts" setup>
-import QRCodeStyling, { Options } from 'styled-qr-code';
+import QRCodeStyling from 'qr-code-styling';
+import { Options } from 'qr-code-styling';
 import { watch, computed, onMounted, ref } from 'vue';
 
 const qrCodeRef: any = ref(null);
 
 export interface Props {
   value: string,
-  color: string,
-  width: number,
-  height: number,
+  color?: string,
+  width?: number,
+  height?: number,
   image?: string,
   bottomAdjust?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  width: 200,
-  height: 200,
-  color: "000000",
-  bottomAdjust: "0px"
+  width: 150,
+  height: 150,
+  color: "blue",
+  bottomAdjust: "-2em"
 });
 
 const offsetColor = computed<string>(() => {
