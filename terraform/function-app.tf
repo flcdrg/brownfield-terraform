@@ -1,13 +1,13 @@
 import {
   for_each = contains(["dev", "prod"], var.environment) ? toset(["f1", "f2", "f3"]) : toset([])
-  id       = "/subscriptions/${data.azurerm_client_config.current.subscription_id}/resourceGroups/${data.azurerm_resource_group.group.name}/providers/Microsoft.Web/sites/func-brownfield-${each.key}-${var.environment}-aue"
-  to       = azurerm_linux_function_app.func[each.key]
+  id = "/subscriptions/${data.azurerm_client_config.current.subscription_id}/resourceGroups/${data.azurerm_resource_group.group.name}/providers/Microsoft.Web/sites/func-brownfield-${each.key}-${var.environment}-aue"
+  to = azurerm_linux_function_app.func[each.key]
 }
 
 resource "azurerm_linux_function_app" "func" {
   for_each = contains(["dev", "prod"], var.environment) ? toset(["f1", "f2", "f3"]) : toset([])
 
-  name                = "func-brownfield-f1-${var.environment}-aue"
+  name                = "func-brownfield-${each.key}-${var.environment}-aue"
   resource_group_name = data.azurerm_resource_group.group.name
   location            = data.azurerm_resource_group.group.location
 
@@ -19,8 +19,10 @@ resource "azurerm_linux_function_app" "func" {
     type = "SystemAssigned"
   }
   site_config {
-    ftps_state    = "FtpsOnly"
-    http2_enabled = true
+    ftps_state                        = "FtpsOnly"
+    http2_enabled                     = true
+    ip_restriction_default_action     = "Allow"
+    scm_ip_restriction_default_action = "Allow"
     application_stack {
       dotnet_version              = "8.0"
       use_dotnet_isolated_runtime = true

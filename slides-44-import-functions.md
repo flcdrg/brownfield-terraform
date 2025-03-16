@@ -159,7 +159,7 @@ resource "azurerm_linux_function_app" "res-53" {
 * Look at configuration.
 * Useful to compare against ARM template values
 * Identify any redundant configuration we can remove
-* ip_restriction_default_action values are invalid. Remove those properties
+* ip_restriction_default_action values are invalid. Set to 'Allow'
 -->
 
 ---
