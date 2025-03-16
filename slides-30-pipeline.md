@@ -30,6 +30,8 @@ data "azurerm_resource_group" "group" {
 
 ```
 
+---
+
 # Plan against each environment
 
 ```yaml {*|1-17|38-56|44,50|58-62|64-70|72-85|87-103}{maxHeight: '80%' }

@@ -71,6 +71,8 @@ While attempting to import an existing object to "azurerm_service_plan.func_plan
 
 <!-- Test doesn't have any Functions -->
 ---
+layout: default
+---
 
 # Add conditions
 
@@ -118,9 +120,8 @@ resource "azurerm_service_plan" "func_plan" {
 
 # And the Function apps
 
-Choice to either use a module or for_each
-
-```hcl {*}
+<!-- Can't use maxHeight with magic-move https://github.com/slidevjs/slidev/issues/1531 -->
+```text {*|6-10|12|13-14|21-22|28-30}{maxHeight: '80%' }
 resource "azurerm_linux_function_app" "res-53" {
   name                       = "func-brownfield-f1-dev-aue"
   resource_group_name        = "rg-brownfield-dev-australiaeast"
@@ -158,4 +159,8 @@ resource "azurerm_linux_function_app" "res-53" {
 * Look at configuration.
 * Useful to compare against ARM template values
 * Identify any redundant configuration we can remove
+* ip_restriction_default_action values are invalid. Remove those properties
 -->
+
+---
+
