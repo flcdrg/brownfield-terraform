@@ -6,6 +6,30 @@ layout: section
 
 ---
 
+# Variables
+
+```hcl
+variable "environment" {
+  description = "The environment to deploy to"
+  type        = string
+  default     = "dev"
+}
+```
+
+---
+
+# Data resources
+
+```hcl
+data "azurerm_client_config" "current" {
+}
+
+data "azurerm_resource_group" "group" {
+  name = "rg-brownfield-dev-australiaeast"
+}
+
+```
+
 # Plan against each environment
 
 ```yaml {*|1-17|38-56|44,50|58-62|64-70|72-85|87-103}{maxHeight: '80%' }
@@ -120,6 +144,8 @@ image: ./slides/pipeline/pipeline-summary.png
 backgroundSize: contain
 ---
 
+<!-- May want to just do 'dev' environment first. Disable others, and then enable them once dev is complete, so you know dev is good and can compare against the others
+ -->
 ---
 layout: image
 image: ./slides/pipeline/pipeline-terraform-tab.png
