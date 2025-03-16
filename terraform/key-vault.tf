@@ -20,14 +20,14 @@ resource "azurerm_key_vault" "kv" {
   tenant_id                  = data.azurerm_client_config.current.tenant_id
 }
 
-import {
-  for_each = contains(["dev", "prod"], var.environment) ? {
-    enabled = true
-    } : {
-  }
-  id = "${azurerm_key_vault.kv.id}/objectId/${data.azurerm_client_config.current.object_id}"
-  to = azurerm_key_vault_access_policy.pipeline_spn[0]
-}
+# import {
+#   for_each = contains(["dev", "prod"], var.environment) ? {
+#     enabled = true
+#     } : {
+#   }
+#   id = "${azurerm_key_vault.kv.id}/objectId/${data.azurerm_client_config.current.object_id}"
+#   to = azurerm_key_vault_access_policy.pipeline_spn[0]
+# }
 
 # resource "azurerm_key_vault_access_policy" "pipeline_spn" {
 #   count = contains(["dev", "prod"], var.environment) ? 1 : 0
