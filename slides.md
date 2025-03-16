@@ -45,23 +45,27 @@ The last comment block of each slide will be treated as slide notes. It will be 
 * Migrate TF deprecated resources
 
 ---
-src: ./slides-01-problem.md
+src: ./slides-10-problem.md
 ---
 
 ---
-src: ./slides-02-aztfexport.md
+src: ./slides-20-aztfexport.md
 ---
 
 ---
-src: ./slides-03-import.md
+src: ./slides-30-pipeline.md
 ---
 
 ---
-src: ./slides-04-move.md
+src: ./slides-40-import.md
 ---
 
 ---
-src: ./slides-05-migrate.md
+src: ./slides-50-move.md
+---
+
+---
+src: ./slides-60-migrate.md
 ---
 
 ---
