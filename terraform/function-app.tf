@@ -16,6 +16,10 @@ resource "azurerm_linux_function_app" "func" {
   resource_group_name = data.azurerm_resource_group.group.name
   location            = data.azurerm_resource_group.group.location
 
+  app_settings = {
+    WEBSITES_ENABLE_APP_SERVICE_STORAGE    = "true"
+    WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED = "1"
+  }
   client_certificate_mode    = "Required"
   service_plan_id            = azurerm_service_plan.func_plan[0].id
   storage_account_access_key = azurerm_storage_account.storage.primary_access_key
@@ -24,8 +28,8 @@ resource "azurerm_linux_function_app" "func" {
     type = "SystemAssigned"
   }
   site_config {
-    ftps_state                        = "FtpsOnly"
-    http2_enabled                     = true
+    ftps_state    = "FtpsOnly"
+    http2_enabled = true
     application_stack {
       dotnet_version              = "8.0"
       use_dotnet_isolated_runtime = true
