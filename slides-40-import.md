@@ -256,7 +256,7 @@ Terraform will perform the following actions:
 
 ```hcl {*}
 import {
-  id = "/subscriptions/7037474c-e5fd-4336-8ffa-ff8ef9d34930/resourceGroups/rg-brownfield-dev-australiaeast/providers/Microsoft.Web/serverFarms/plan-brownfield-dev-australiaeast"
+  id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-brownfield-dev-australiaeast/providers/Microsoft.Web/serverFarms/plan-brownfield-dev-australiaeast"
   to = azurerm_service_plan.res-22
 }
 
