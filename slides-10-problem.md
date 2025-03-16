@@ -9,6 +9,8 @@ layout: section
 * There are obvious manual configuration changes present
 
 ---
+zoom: 0.8
+---
 
 # Dev
 
@@ -22,15 +24,38 @@ layout: section
 |<img src="/10029-icon-service-Function-Apps.svg" align="center" style="display:inline"> func-brownfield-f1-dev-aue      | Microsoft.Web/sites|
 |<img src="/10029-icon-service-Function-Apps.svg" align="center" style="display:inline"> func-brownfield-f2-dev-aue      | Microsoft.Web/sites|
 |<img src="/10029-icon-service-Function-Apps.svg" align="center" style="display:inline"> func-brownfield-f3-dev-aue      | Microsoft.Web/sites|
-|app-brownfield-dev-australiaeast        | Microsoft.Web/sites|
+|<img src="/10035-icon-service-App-Services.svg" align="centre" style="display:inline"> app-brownfield-dev-australiaeast        | Microsoft.Web/sites|
 
 ---
 
 # Test
 
+| **Name** | **Type** |
+|------|------|
+| <img src="/10245-icon-service-Key-Vaults.svg" align="center" style="display:inline"> kv-bf-test-u48x-aue     | Microsoft.KeyVault/vaults |
+| <img src="/10086-icon-service-Storage-Accounts.svg" align="center" style="display:inline"> stbftest        | Microsoft.Storage/storageAccounts |
+| <img src="/10086-icon-service-Storage-Accounts.svg" align="center" style="display:inline"> stbftesttf      | Microsoft.Storage/storageAccounts |
+| <img src="/00046-icon-service-App-Service-Plans.svg" align="center" style="display:inline"> plan-brownfield-web-test-australiaeast  | Microsoft.Web/serverFarms |
+| <img src="/10035-icon-service-App-Services.svg" align="centre" style="display:inline">app-brownfield-test-australiaeast       | Microsoft.Web/sites |
+
+
+---
+zoom: 0.8
 ---
 
 # Prod
+
+| **Name** | **Type** |
+|------|------|
+| <img src="/10245-icon-service-Key-Vaults.svg" align="center" style="display:inline"> kv-bf-prod-0meq-aue     | Microsoft.KeyVault/vaults |
+| <img src="/10086-icon-service-Storage-Accounts.svg" align="center" style="display:inline"> stbfprod        | Microsoft.Storage/storageAccounts |
+| <img src="/10086-icon-service-Storage-Accounts.svg" align="center" style="display:inline"> stbfprodtf      | Microsoft.Storage/storageAccounts |
+| <img src="/00046-icon-service-App-Service-Plans.svg" align="center" style="display:inline"> plan-brownfield-prod-australiaeast      | Microsoft.Web/serverFarms |
+| <img src="/00046-icon-service-App-Service-Plans.svg" align="center" style="display:inline"> plan-brownfield-web-prod-australiaeast  | Microsoft.Web/serverFarms |
+| <img src="/10029-icon-service-Function-Apps.svg" align="center" style="display:inline"> func-brownfield-app-f1-prod-aue | Microsoft.Web/sites |
+| <img src="/10029-icon-service-Function-Apps.svg" align="center" style="display:inline"> func-brownfield-app-f2-prod-aue | Microsoft.Web/sites |
+| <img src="/10029-icon-service-Function-Apps.svg" align="center" style="display:inline"> func-brownfield-app-f3-prod-aue | Microsoft.Web/sites |
+| <img src="/10035-icon-service-App-Services.svg" align="center" style="display:inline"> app-brownfield-prod-australiaeast       | Microsoft.Web/sites |
 
 ---
 
