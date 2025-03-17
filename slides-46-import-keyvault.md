@@ -563,3 +563,17 @@ resource "azurerm_key_vault_access_policy" "function_app" {
   secret_permissions      = ["Get", "List"]
 }
 ```
+
+---
+layout: problem
+---
+
+# But
+
+Error: Invalid import id argument
+
+  on key-vault.tf line 51, in import:
+  51:   id       = "${azurerm_key_vault.kv.id}/objectId/${azurerm_linux_function_app.func.identity[each.key].principal_id}"
+
+The import block "id" argument depends on resource attributes that cannot be
+determined until apply, so Terraform cannot plan to import this resource.

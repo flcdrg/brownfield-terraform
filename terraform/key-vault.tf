@@ -52,10 +52,21 @@ data "azurerm_linux_function_app" "func" {
   resource_group_name = data.azurerm_resource_group.group.name
 }
 
+locals {
+  function_app_object_id = {
+    func-brownfield-f1-dev-aue      = "463e0df6-c77a-4977-9191-78ab9a27011d"
+    func-brownfield-f2-dev-aue      = "88016e7a-c8ee-43c1-bd3c-d6c4ff2530c0"
+    func-brownfield-f3-dev-aue      = "20465cbf-884a-42a6-a1e8-1212a28859c0"
+    func-brownfield-app-f1-prod-aue = "d33dfb2e-6cef-488d-8114-a424dd16c096"
+    func-brownfield-app-f2-prod-aue = "05747c5c-7679-4bb9-8897-80947287ba04"
+    func-brownfield-app-f3-prod-aue = "f4aebadd-7490-4dd7-a20b-6edebfc4e71e"
+  }
+}
+
 # Access policies for each function app
 import {
   for_each = local.function_apps
-  id       = "${azurerm_key_vault.kv.id}/objectId/${data.azurerm_linux_function_app.func.identity[each.key].principal_id}"
+  id       = "${azurerm_key_vault.kv.id}/objectId/${local.function_app_object_id[each.key]}"
   to       = azurerm_key_vault_access_policy.function_app[each.key]
 }
 
