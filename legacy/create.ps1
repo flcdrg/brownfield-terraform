@@ -8,6 +8,11 @@ az keyvault create --name kv-bf-dev-je7v-aue --resource-group rg-brownfield-dev-
 az keyvault create --name kv-bf-test-u48x-aue --resource-group rg-brownfield-test-australiaeast --location australiaeast --retention-days 7 --enable-rbac-authorization false
 az keyvault create --name kv-bf-prod-0meq-aue --resource-group rg-brownfield-prod-australiaeast --location australiaeast --retention-days 7 --enable-rbac-authorization false
 
+# Add secrets to Key Vaults
+az keyvault secret set --vault-name kv-bf-dev-je7v-aue --name "super-secret" --value "secret1-value"
+az keyvault secret set --vault-name kv-bf-test-u48x-aue --name "super-secret" --value "secret2-value"
+az keyvault secret set --vault-name kv-bf-prod-0meq-aue --name "super-secret" --value "secret3-value"
+
 # Create Storage Accounts
 az storage account create --name stbfdev --resource-group rg-brownfield-dev-australiaeast --location australiaeast --sku Standard_LRS --access-tier Hot
 az storage account create --name stbftest --resource-group rg-brownfield-test-australiaeast --location australiaeast --sku Standard_LRS --https-only false

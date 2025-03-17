@@ -6,7 +6,7 @@ layout: section
 
 * Three separate environments in Azure (Dev/Test/Prod)
 * Some automation has been used, but not consistently
-* There are obvious manual configuration changes present
+* There may be manual configuration changes present
 
 ---
 zoom: 0.8
@@ -38,7 +38,6 @@ zoom: 0.8
 | <img src="/00046-icon-service-App-Service-Plans.svg" align="center" style="display:inline"> plan-brownfield-web-test-australiaeast  | Microsoft.Web/serverFarms |
 | <img src="/10035-icon-service-App-Services.svg" align="centre" style="display:inline">app-brownfield-test-australiaeast       | Microsoft.Web/sites |
 
-
 ---
 zoom: 0.8
 ---
@@ -61,7 +60,7 @@ zoom: 0.8
 
 # Existing Terraform
 
-```hcl {*|2-5|9|*}
+```hcl {*|2-5|8-11|*}
 terraform {
   backend "azurerm" {
     container_name = "tfstate"
@@ -71,7 +70,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 2.0.0"
+      version = "3.0.0"
     }
   }
 
@@ -87,7 +86,7 @@ provider "azurerm" {
 
 # Old pipeline
 
-```yaml {*}{maxHeight: '80%' }
+```yaml {*|44-50|52-62}{maxHeight: '80%',lines:true }
 parameters:
   - name: Environment
     type: string

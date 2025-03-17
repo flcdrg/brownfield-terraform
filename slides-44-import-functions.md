@@ -391,7 +391,7 @@ layout: problem
 
 Resource Group Name: "rg-brownfield-prod-australiaeast"
 
-Site Name: "func-brownfield-f1-prod-aue"): unexpected status 404 (404 Not Found) with error: ResourceNotFound: The Resource 'Microsoft.Web/sites/func-brownfield-f1-prod-aue' under resource group 'rg-brownfield-prod-australiaeast' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+Site Name: "func-brownfield-f1-prod-aue"): unexpected status 404 (404 Not Found) with error: ResourceNotFound: The Resource 'Microsoft.Web/sites/func-brownfield-f1-prod-aue' under resource group 'rg-brownfield-prod-australiaeast' was not found. For more details please go to <https://aka.ms/ARMResourceNotFoundFix>
 
 <Link to="6">Back to Prod resources</Link>
 

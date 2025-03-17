@@ -69,9 +69,18 @@ src: ./slides-60-migrate.md
 ---
 
 ---
+
+# Clean up
+
+After changes have been applied to all environments
+
+* Re-apply a second time, just to be sure. Then
+* Remove `moved` blocks
+* Remove `import` blocks
+* And deploy again. Terraform should not want to make any changes.
+
+---
 layout: end
 ---
 
-# Conclusion
-
-The end
+# And we're done!

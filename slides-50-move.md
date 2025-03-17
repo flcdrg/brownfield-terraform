@@ -8,7 +8,7 @@ layout: section
 
 # Syntax
 
-https://developer.hashicorp.com/terraform/language/moved
+<QRCode value="https://developer.hashicorp.com/terraform/language/moved" bottomAdjust="0px" />
 
 ```hcl
 moved {
@@ -21,7 +21,7 @@ moved {
   * Rename a resource address
   * When a resource becomes an array (or the reverse)
   * When a resource moves into or out of a module
-* Don't cause errors if the `from` address doesn't exist
+* Doesn't cause errors if the `from` address doesn't exist
 
 ---
 
@@ -56,8 +56,8 @@ module "web" {
 ```hcl {*}
 resource "azurerm_service_plan" "plan" {
   name                = "plan-brownfield-web-${var.environment}-australiaeast"
-  location            = var.resource_group_location
   resource_group_name = var.resource_group_name
+  location            = var.resource_group_location
   os_type             = "Linux"
   sku_name            = "B1"
 }
@@ -89,6 +89,21 @@ resource "azurerm_service_plan" "plan" {
 ```
 
 ````
+
+---
+
+# Check output
+
+```text
+  # module.plan.azurerm_service_plan.plan has moved to azurerm_service_plan.plan
+    resource "azurerm_service_plan" "plan" {
+        id                              = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-brownfield-dev-australiaeast/providers/Microsoft.Web/serverFarms/plan-brownfield-web-dev-australiaeast"
+        name                            = "plan-brownfield-web-dev-australiaeast"
+        tags                            = {}
+        # (12 unchanged attributes hidden)
+    }
+
+```
 
 ---
 
@@ -136,3 +151,20 @@ resource "azurerm_app_service" "appservice" {
 ```
 
 ````
+
+---
+layout: problem
+---
+
+# What's this?
+
+Warning: Deprecated Resource
+
+   with azurerm_app_service.appservice,
+   on app-service.tf line 6, in resource "azurerm_app_service" "appservice":
+    6: resource "azurerm_app_service" "appservice" {
+
+ The `azurerm_app_service` resource has been superseded by the `azurerm_linux_web_app` and `azurerm_windows_web_app`
+ resources. Whilst this resource will continue to be available in the 2.x and 3.x releases it is feature-frozen for
+ compatibility purposes, will no longer receive any updates and will be removed in a future major release of the Azure
+ Provider.

@@ -2,17 +2,21 @@
 layout: section
 ---
 
-# The new pipeline
+# The new Terraform and pipeline
 
 ---
 
-# Variables
+# Terraform variables
 
 ```hcl
 variable "environment" {
   description = "The environment to deploy to"
   type        = string
   default     = "dev"
+}
+variable "resourcegroup_name" {
+  description = "The name of the resource group"
+  type        = string
 }
 ```
 
@@ -25,14 +29,13 @@ data "azurerm_client_config" "current" {
 }
 
 data "azurerm_resource_group" "group" {
-  name = "rg-brownfield-dev-australiaeast"
+  name = var.resourcegroup_name
 }
-
 ```
 
 ---
 
-# Plan against each environment
+# Pipeline plans each environment
 
 ```yaml {*|1-17|38-56|44,50|58-62|64-70|72-85|87-103}{maxHeight: '80%' }
 parameters:

@@ -570,6 +570,7 @@ layout: problem
 
 # But
 
+```text
 Error: Invalid import id argument
 
   on key-vault.tf line 51, in import:
@@ -577,6 +578,7 @@ Error: Invalid import id argument
 
 The import block "id" argument depends on resource attributes that cannot be
 determined until apply, so Terraform cannot plan to import this resource.
+```
 
 ---
 
@@ -618,8 +620,8 @@ import {
 
 # Key Vault Secrets
 
-* https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_secret
-* Don't include secret values in source
+* <QRCode value="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_secret" />
+* Don't include secret values in source!
 * Hex value in resource id is the secret's version number
 
 ---
@@ -635,7 +637,7 @@ import {
 }
 
 resource "azurerm_key_vault_secret" "res-7" {
-  key_vault_id = "/subscriptions/7037474c-e5fd-4336-8ffa-ff8ef9d34930/resourceGroups/rg-brownfield-dev-australiaeast/providers/Microsoft.KeyVault/vaults/kv-bf-dev-je7v-aue"
+  key_vault_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-brownfield-dev-australiaeast/providers/Microsoft.KeyVault/vaults/kv-bf-dev-je7v-aue"
   name         = "super-secret"
   tags = {
     file-encoding = "utf-8"

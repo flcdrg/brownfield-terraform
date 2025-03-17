@@ -8,7 +8,7 @@ layout: section
 
 # Syntax
 
-https://developer.hashicorp.com/terraform/language/import
+<QRCode value="https://developer.hashicorp.com/terraform/language/import" bottomAdjust="0px" />
 
 ```hcl
 import {
