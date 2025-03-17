@@ -39,7 +39,7 @@ resource "azurerm_key_vault" "res-3" {
 ```
 
 <!-- Add locals for KV names -->
-```hcl {*}
+```hcl {1-7,11,17}
 locals {
   key_vault_name = {
     dev  = "kv-bf-dev-je7v-aue"
@@ -329,7 +329,7 @@ resource "azurerm_key_vault_access_policy" "pipeline_spn" {
 
 ```
 
-```hcl {2-5|11|7|*}
+```hcl {2-5,7,11|*}
 import {
   for_each = contains(["dev", "prod"], var.environment) ? {
     enabled = true
@@ -540,3 +540,26 @@ Terraform will perform the following actions:
 ---
 
 # Add remaining access policies
+
+Application (Functions)
+
+* Need Object ID of Function App
+* Can use identity property
+* principal_id is Object ID
+
+```hcl {2,8|3,12|*}
+import {
+  for_each = local.function_apps
+  id = "${azurerm_key_vault.kv.id}/objectId/${azurerm_linux_function_app.func.identity[each.key].principal_id}"
+  to = azurerm_key_vault_access_policy.function_app[each.key]
+}
+
+resource "azurerm_key_vault_access_policy" "function_app" {
+  for_each = local.function_apps
+
+  key_vault_id            = azurerm_key_vault.kv.id
+  tenant_id               = data.azurerm_client_config.current.tenant_id
+  object_id               = azurerm_linux_function_app.func[each.key].identity[0].principal_id
+  secret_permissions      = ["Get", "List"]
+}
+```
