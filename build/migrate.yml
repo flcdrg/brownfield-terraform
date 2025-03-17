@@ -85,6 +85,19 @@ jobs:
             displayName: "Script: Use Terraform Local Backend"
             workingDirectory: terraform
 
+          - script: |
+              # Remove state of old resources from Terraform
+              mapfile -t RESOURCES < <( terraform state list )
+        
+              if [[ " ${RESOURCES[@]} " =~ "azurerm_app_service.appservice" ]]; then
+                terraform state rm azurerm_app_service.appservice
+              fi
+
+              terraform state list
+
+            workingDirectory: terraform
+            displayName: "Script: Remove deprecated resources from Terraform state"
+              
           - task: TerraformCLI@2
             displayName: "Terraform: validate"
             inputs:
