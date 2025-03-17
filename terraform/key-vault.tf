@@ -45,13 +45,6 @@ resource "azurerm_key_vault_access_policy" "pipeline_spn" {
   #   storage_permissions     = [ "all" ]
 }
 
-
-data "azurerm_linux_function_app" "func" {
-  for_each            = local.function_apps
-  name                = each.key
-  resource_group_name = data.azurerm_resource_group.group.name
-}
-
 locals {
   function_app_object_id = {
     func-brownfield-f1-dev-aue      = "463e0df6-c77a-4977-9191-78ab9a27011d"
@@ -77,4 +70,33 @@ resource "azurerm_key_vault_access_policy" "function_app" {
   tenant_id          = data.azurerm_client_config.current.tenant_id
   object_id          = azurerm_linux_function_app.func[each.key].identity[0].principal_id
   secret_permissions = ["Get", "List"]
+}
+
+# Secrets
+
+locals {
+  super_secret_version = {
+    dev  = "31832b009fb24d688449eaa1a7b70e38"
+    test = "cddced895f2c4ab4aaf7fb6891750c64"
+    prod = "a11c58c1a63b40878b29f0582c4312e3"
+  }
+}
+import {
+  id = "${azurerm_key_vault.kv.vault_uri}secrets/super-secret/${local.super_secret_version[var.environment]}"
+  to = azurerm_key_vault_secret.secret
+}
+
+resource "azurerm_key_vault_secret" "secret" {
+  key_vault_id = azurerm_key_vault.kv.id
+  name         = "super-secret"
+  tags = {
+    file-encoding = "utf-8"
+  }
+  value = ""
+
+  lifecycle {
+    ignore_changes = [
+      value
+    ]
+  }
 }
