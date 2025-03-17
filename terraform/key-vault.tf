@@ -45,10 +45,17 @@ resource "azurerm_key_vault_access_policy" "pipeline_spn" {
   #   storage_permissions     = [ "all" ]
 }
 
+
+data "azurerm_linux_function_app" "func" {
+  for_each            = local.function_apps
+  name                = each.key
+  resource_group_name = data.azurerm_resource_group.group.name
+}
+
 # Access policies for each function app
 import {
   for_each = local.function_apps
-  id       = "${azurerm_key_vault.kv.id}/objectId/${azurerm_linux_function_app.func.identity[each.key].principal_id}"
+  id       = "${azurerm_key_vault.kv.id}/objectId/${data.azurerm_linux_function_app.func.identity[each.key].principal_id}"
   to       = azurerm_key_vault_access_policy.function_app[each.key]
 }
 
