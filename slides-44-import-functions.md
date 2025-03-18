@@ -121,7 +121,7 @@ resource "azurerm_service_plan" "func_plan" {
 # And the Function apps
 
 <!-- Can't use maxHeight with magic-move https://github.com/slidevjs/slidev/issues/1531 -->
-```text {*|6-10|12|13-14|21-22|28-30}{maxHeight: '80%' }
+```hcl {*|6-10|12|13-14|21-22|28-30}{maxHeight: '80%', lines:true }
 resource "azurerm_linux_function_app" "res-53" {
   name                       = "func-brownfield-f1-dev-aue"
   resource_group_name        = "rg-brownfield-dev-australiaeast"
