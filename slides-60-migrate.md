@@ -235,3 +235,8 @@ resource "azurerm_linux_web_app" "appservice" {
 
 Plan: 12 to import, 0 to add, 7 to change, 0 to destroy.
 ```
+
+<!--
+* A few minor differences
+* Not significant, can ignore.
+-->
