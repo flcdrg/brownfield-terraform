@@ -86,7 +86,7 @@ provider "azurerm" {
 
 # Old pipeline
 
-```yaml {*|44-50|52-62}{maxHeight: '80%',lines:true }
+```yaml {*|44-50|52-62|*}{maxHeight: '80%',lines:true }
 parameters:
   - name: Environment
     type: string
@@ -222,4 +222,4 @@ title: azurerm_app_service deprecation
 
 This resource has been deprecated in version 3.0 of the AzureRM provider and will be removed in version 4.0. Please use azurerm_linux_web_app and azurerm_windows_web_app resources instead.
 
-<!-- We will want to -->
+<!-- From AzureRM documentation. We will want to look at migrating to another resource if we ever want to upgrade to AzureRM 4.0 -->

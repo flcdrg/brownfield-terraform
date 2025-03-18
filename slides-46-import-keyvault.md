@@ -96,7 +96,7 @@ resource "azurerm_key_vault" "kv" {
 <!-- 
 * Original
 * Data resources
-* KV names
+* KV names - per environment
 * resource names
 -->
 
@@ -618,6 +618,44 @@ import {
 
 ---
 
+# Sometimes it's weird
+
+```text {8-12|25-28|*}{maxHeight: '80%', lines:true }
+~ resource "azurerm_key_vault_access_policy" "function_app" {
+      application_id          = null
+      certificate_permissions = []
+      id                      = "/subscriptions/7037474c-e5fd-4336-8ffa-ff8ef9d34930/resourceGroups/rg-brownfield-dev-australiaeast/providers/Microsoft.KeyVault/vaults/kv-bf-dev-je7v-aue/objectId/88016e7a-c8ee-43c1-bd3c-d6c4ff2530c0"
+      key_permissions         = []
+      key_vault_id            = "/subscriptions/7037474c-e5fd-4336-8ffa-ff8ef9d34930/resourceGroups/rg-brownfield-dev-australiaeast/providers/Microsoft.KeyVault/vaults/kv-bf-dev-je7v-aue"
+      object_id               = "88016e7a-c8ee-43c1-bd3c-d6c4ff2530c0"
+    ~ secret_permissions      = [
+        - "List",
+          "Get",
+        + "List",
+      ]
+      storage_permissions     = []
+      tenant_id               = "51b792d5-bfd3-4dbd-82d2-f42aef2fa7ee"
+  }
+
+# azurerm_key_vault_access_policy.function_app["func-brownfield-f3-dev-aue"] will be imported
+  resource "azurerm_key_vault_access_policy" "function_app" {
+      application_id          = null
+      certificate_permissions = []
+      id                      = "/subscriptions/7037474c-e5fd-4336-8ffa-ff8ef9d34930/resourceGroups/rg-brownfield-dev-australiaeast/providers/Microsoft.KeyVault/vaults/kv-bf-dev-je7v-aue/objectId/20465cbf-884a-42a6-a1e8-1212a28859c0"
+      key_permissions         = []
+      key_vault_id            = "/subscriptions/7037474c-e5fd-4336-8ffa-ff8ef9d34930/resourceGroups/rg-brownfield-dev-australiaeast/providers/Microsoft.KeyVault/vaults/kv-bf-dev-je7v-aue"
+      object_id               = "20465cbf-884a-42a6-a1e8-1212a28859c0"
+      secret_permissions      = [
+          "Get",
+          "List",
+      ]
+      storage_permissions     = []
+      tenant_id               = "51b792d5-bfd3-4dbd-82d2-f42aef2fa7ee"
+  }
+```
+
+---
+
 # Key Vault Secrets
 
 * <QRCode value="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_secret" />
@@ -679,3 +717,10 @@ resource "azurerm_key_vault_secret" "secret" {
 ```
 
 ````
+
+<!--
+* secret version numbers per environment
+* Look up version in import
+* Don't include secret value in IaC (it's already in the KV)
+* Tell Terraform to ignore value so we don't overwrite it
+-->

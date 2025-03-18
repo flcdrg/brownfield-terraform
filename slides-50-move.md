@@ -168,3 +168,7 @@ Warning: Deprecated Resource
  resources. Whilst this resource will continue to be available in the 2.x and 3.x releases it is feature-frozen for
  compatibility purposes, will no longer receive any updates and will be removed in a future major release of the Azure
  Provider.
+
+<!--
+We'll fix this next...
+-->

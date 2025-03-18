@@ -84,3 +84,5 @@ layout: end
 ---
 
 # And we're done!
+
+<QRCode value="https://github.com/flcdrg/brownfield-terraform/" color="#FFFFFF" />

@@ -28,18 +28,24 @@ title: aztfexport Initializing
 image: ./slides/aztfexport/aztfexport-initializing.png
 ---
 
+<!-- aztfexport initialising screenshot -->
+
 ---
 layout: image
 title: Waiting...
 image: ./slides/aztfexport/hourglass.gif
 ---
 
+<!-- hourglass animation -->
+
 ---
 layout: image
 image: ./slides/aztfexport/aztfexport-ui.png
 ---
 
-<!-- You can edit the items here. But there are a lot of items. Easier to open JSON file in editor and do it there. 
+<!-- Screenshot of aztfexport UI.
+
+You can edit the items here. But there are a lot of items. Easier to open JSON file in editor and do it there. 
 
 - Can delete items
 - Hit 's' to save mapping file

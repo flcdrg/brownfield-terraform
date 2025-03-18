@@ -34,6 +34,11 @@ workingDirectory: terraform
 displayName: "Script: Remove deprecated resources from Terraform state"
 ```
 
+<!--
+* Create string array from output of terraform command
+* If any lines contain string, then run command
+-->
+
 ---
 
 # And use new resource with import
@@ -87,6 +92,11 @@ resource "azurerm_linux_web_app" "appservice" {
 ```
 
 ````
+
+<!--
+* Use data resources and variables
+* And new resource type, with different site_config structure
+-->
 
 ---
 

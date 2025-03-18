@@ -217,12 +217,16 @@ resource "azurerm_linux_function_app" "func" {
   }
 }
 ```
+<!-- 
+* Use a for_each to do all 3 functions in one go - the include
+* And the function resource
+-->
 
 ---
 
 # Review plan
 
-```text {7|14|12|126,135}{maxHeight: '80%' }
+```text {7|14|12|126,135|*}{maxHeight: '80%' }
 Terraform will perform the following actions:
 
   # azurerm_linux_function_app.func["func-brownfield-f1-dev-aue"] will be updated in-place
@@ -379,6 +383,13 @@ Terraform will perform the following actions:
     }
 ```
 
+<!--
+* Not sure why the decryption key is there
+* client cert mode says "required" (though we aren't using client certs!)
+* and enabled false, so ok
+* Also default actions - quirk in provider - need to set these to "Allow"
+-->
+
 ---
 
 # And so we're good right?
@@ -398,7 +409,7 @@ Site Name: "func-brownfield-f1-prod-aue"): unexpected status 404 (404 Not Found)
 <!--
 Why?
 
-* Silly mistake
+* Silly mistake - different names in prod.
 * New naming convention introduced before app went to production?
 -->
 
@@ -444,3 +455,7 @@ resource "azurerm_linux_function_app" "func" {
 ```
 
 ````
+
+<!--
+* Adjust names depending on environment name
+-->

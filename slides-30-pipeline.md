@@ -37,7 +37,7 @@ data "azurerm_resource_group" "group" {
 
 # Pipeline plans each environment
 
-```yaml {*|1-17|38-56|44,50|58-62|64-70|72-85|87-103}{maxHeight: '80%' }
+```yaml {*|1-17|38-56|44,50|58-62|64-70|72-85|87-103|*}{maxHeight: '80%' }
 parameters:
   - name: Environments
     displayName: "Environments - Do not change this in the UI"
@@ -143,13 +143,26 @@ jobs:
               allowTelemetryCollection: false
 ```
 
+<!--
+* Parameters
+* Using .tfvar files for env-specific values
+* Using 'legacy' directory
+* Export existing state
+* tfvars
+* Use copy of state locally
+* Validate and plan
+
+-->
 ---
 layout: image
 image: ./slides/pipeline/pipeline-summary.png
 backgroundSize: contain
 ---
 
-<!-- May want to just do 'dev' environment first. Disable others, and then enable them once dev is complete, so you know dev is good and can compare against the others
+<!-- 
+Screenshot of Azure Pipeline run summary.
+
+May want to just do 'dev' environment first. Disable others, and then enable them once dev is complete, so you know dev is good and can compare against the others
  -->
 ---
 layout: image
@@ -157,11 +170,13 @@ image: ./slides/pipeline/pipeline-terraform-tab.png
 backgroundSize: contain
 ---
 
+<!-- Azure Pipelines run Terraform Plan tab -->
+
 ---
 
 # Dev Terraform
 
-```text {*|3|27|163}{maxHeight: '80%' }
+```text {*|3|27|163|*}{maxHeight: '80%' }
 Terraform will perform the following actions:
 
   # module.plan.azurerm_app_service_plan.plan will be destroyed
@@ -331,3 +346,8 @@ Plan: 0 to add, 0 to change, 2 to destroy.
 Note: You didn't use the -out option to save this plan, so Terraform can't
 guarantee to take exactly these actions if you run "terraform apply" now.
 ```
+
+<!-- Unmapped resources, so existing ones will be destroyed. 
+
+We will fix this later.
+-->
