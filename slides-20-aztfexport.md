@@ -268,10 +268,9 @@ image: /nathan-dumlao-kDxqbAvEBwI-unsplash.jpg
 # backgroundSize: 70%
 ---
 
-# From the Azure Portal
+# Export from the Azure Portal?
 
-![Screenshot](/portal-terraform-export1.png
-)
+![Screenshot](/portal-terraform-export1.png)
 
 ---
 layout: image
@@ -283,8 +282,9 @@ authorName="Rachel Fang"
 unsplashLink="https://unsplash.com/photos/a-white-cat-with-its-mouth-open-dRMb4SVAoJY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" />
 
 ---
-
-<Error />
+layout: problem
+title: Error
+---
 
 ```text
 getting resource provider Microsoft.AzureTerraform: GET https://management.azure.com/subscriptions/b4b2e7e9-66e7-46b5-a56b-cce2b50011d4/providers/Microsoft.AzureTerraform
@@ -303,8 +303,22 @@ ERROR CODE: InvalidAuthenticationToken
 ```
 
 ---
+
 # Solution
 
 You need to register `Microsoft.AzureTerraform` provider
 
-<https://learn.microsoft.com/en-us/azure/developer/terraform/azure-export-for-terraform/resource-provider-overview?WT.mc_id=DOP-MVP-5001655#registration>
+<QRCode value="https://learn.microsoft.com/en-us/azure/developer/terraform/azure-export-for-terraform/resource-provider-overview?WT.mc_id=DOP-MVP-5001655#registration" />
+
+---
+title: Terraform export in Portal
+layout: image
+image: /portal-terraform-export2.png
+backgroundSize: 70%
+---
+
+<!--
+- Not all resources are supported at the moment for AzureRM
+- eg. App Configuration fails
+- AzApi will probably work though
+-->

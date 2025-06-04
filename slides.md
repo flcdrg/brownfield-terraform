@@ -74,6 +74,9 @@ src: ./slides-60-migrate.md
 ---
 
 ---
+layout: image-right
+image: /jeshoots-com-__ZMnefoI3k-unsplash.jpg
+---
 
 # Clean up
 
@@ -84,6 +87,11 @@ After changes have been applied to all environments
 * Remove `import` blocks
 * And deploy again. Terraform should not want to make any changes.
 
+<PhotoCredit
+authorLink="https://unsplash.com/@jeshoots?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+authorName="JESHOOTS.COM"
+unsplashLink="https://unsplash.com/photos/person-holding-yellow-plastic-spray-bottle-__ZMnefoI3k?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" />
+
 ---
 layout: end
 ---
@@ -91,11 +99,3 @@ layout: end
 # And we're done!
 
 <QRCode value="https://github.com/flcdrg/brownfield-terraform/" color="#FFFFFF" />
-
----
-layout: end
----
-
-# Feedback
-
-<QRCodeOnly value="https://forms.office.com/Pages/ResponsePage.aspx?id=1ZK3UdO_vU2C0vQq7y-n7qhyyRrcbA1OsspQc6mEVvNUNkFHT0lYWFFHOEJCTTNYUlJOUjhETTBDMS4u&origin=QRCode" color="#FFFFFF" />

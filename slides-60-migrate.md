@@ -1,8 +1,14 @@
 ---
-layout: section
+layout: image-right
+image: /justin-wilkens-Q7vObyijs0I-unsplash.jpg
 ---
 
 # Migrate deprecated resources
+
+<PhotoCredit
+authorLink="https://unsplash.com/@jlwilkens?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+authorName="Justin Wilkens"
+unsplashLink="https://unsplash.com/photos/a-flock-of-birds-flying-across-a-cloudy-sky-Q7vObyijs0I?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" />
 
 ---
 

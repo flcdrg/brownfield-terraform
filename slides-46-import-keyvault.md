@@ -240,10 +240,21 @@ resource "azurerm_key_vault_access_policy" "pipeline_spn" {
 ```
 
 ---
-layout: problem
+layout: image
+image: /vladislav-nikonov-GiohMjJZRDI-unsplash.jpg
+backgroundSize: contain
 ---
 
-# Error
+<PhotoCredit
+authorLink="https://unsplash.com/@memtor?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+authorName="Vladislav Nikonov"
+unsplashLink="https://unsplash.com/photos/cat-on-window-during-daytime-GiohMjJZRDI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+/>
+
+---
+layout: problem
+title: expected certificate_permissions
+---
 
 expected certificate_permissions.0 to be one of ["Get" "List" "Update" "Create" "Import" "Delete" "Recover" "Backup" "Restore" "ManageContacts" "ManageIssuers" "GetIssuers" "ListIssuers" "SetIssuers" "DeleteIssuers" "Purge"], got all
 
@@ -292,10 +303,21 @@ resource "azurerm_key_vault_access_policy" "pipeline_spn" {
 ````
 
 ---
-layout: problem
+layout: image
+image: /dineshkumar-m-bIefNhaDuiU-unsplash.jpg
+backgroundSize: contain
 ---
 
-# But it doesn't exist in Test!
+<PhotoCredit
+authorLink="https://unsplash.com/@idlunked?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+authorName="Dineshkumar M"
+unsplashLink="https://unsplash.com/photos/a-cat-sitting-on-top-of-a-cement-wall-bIefNhaDuiU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+/>
+
+---
+layout: problem
+title: But it doesn't exist in Test!
+---
 
 ```text
 Error: Cannot import non-existent remote object
@@ -565,10 +587,22 @@ resource "azurerm_key_vault_access_policy" "function_app" {
 ```
 
 ---
-layout: problem
+layout: image
+image: /ghavam-cheraghali-1HhaYZqdvM0-unsplash.jpg
+backgroundSize: contain
+title: Cat looking around corner
 ---
 
-# But
+<PhotoCredit
+authorLink="https://unsplash.com/@ghavix?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+authorName="Ghavam Cheraghali"
+unsplashLink="https://unsplash.com/photos/a-black-cat-peeking-out-from-behind-a-wall-1HhaYZqdvM0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+/>
+
+---
+layout: problem
+title: But
+---
 
 ```text
 Error: Invalid import id argument

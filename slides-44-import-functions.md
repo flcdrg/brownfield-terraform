@@ -62,8 +62,21 @@ Terraform will perform the following actions:
 ```
 
 ---
+layout: image
+image: /andrew-umansky-l5truYNKmm8-unsplash.jpg
+backgroundSize: contain
+---
+
+<PhotoCredit
+authorLink="https://unsplash.com/@angur?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+authorName="Andrew Umansky"
+unsplashLink="https://unsplash.com/photos/gray-cat-l5truYNKmm8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+align="center"
+/>
+
+---
 layout: problem
-heading: But hang on. Test environment has failed!
+title: But hang on. Test environment has failed!
 ---
 
 While attempting to import an existing object to "azurerm_service_plan.func_plan", the provider detected that no object exists with the given id. Only pre-existing objects can be imported; check that the id is correct and that it is associated with the provider's configured region or endpoint, or use "terraform apply" to create a new remote object for this resource.
@@ -390,14 +403,20 @@ Terraform will perform the following actions:
 -->
 
 ---
+layout: image-right
+image: /aswin-p-s-gLhxDT3PhO0-unsplash.jpg
+---
 
 # And so we're good right?
 
+<PhotoCredit authorLink="https://unsplash.com/@chief__parker?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+  authorName="Aswin p s"
+  unsplashLink="https://unsplash.com/photos/white-and-brown-tabby-cat-gLhxDT3PhO0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" align="right" />
+
 ---
 layout: problem
+title: "Error: reading Linux App Service"
 ---
-
-# Error: reading Linux App Service
 
 Resource Group Name: "rg-brownfield-prod-australiaeast"
 

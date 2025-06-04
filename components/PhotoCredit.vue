@@ -1,5 +1,12 @@
 <template>
-<div style="font-size: 0.8em; color: white; position: absolute; bottom: 1.5em; right: 2em; width: 100%; text-align: right;">
+<div :style="{
+  fontSize: '0.8em',
+  color: 'white',
+  position: 'absolute',
+  bottom: '1.5em',
+  width: '100%',
+  textAlign: props.align
+}">
   Photo by <a :href="props.authorLink">{{ props.authorName }}</a> on <a :href="props.unsplashLink">Unsplash</a>
 </div>
 </template>
@@ -10,8 +17,10 @@ export interface Props {
   authorLink: string,
   authorName: string,
   unsplashLink: string,
+  align?: 'left' | 'right' | 'center';
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  align: 'center'
 });
 </script>

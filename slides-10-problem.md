@@ -224,8 +224,20 @@ resource "azurerm_app_service" "appservice" {
 ```
 
 ---
-layout: fact
+layout: image
+image: /nick-chalkiadakis-zBVHsGl-YBg-unsplash.jpg
+backgroundSize: contain
+---
+
+<PhotoCredit
+authorLink="https://unsplash.com/@chalkian?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+authorName="Nick Chalkiadakis"
+unsplashLink="https://unsplash.com/photos/orange-tabby-cat-peeping-on-white-textile-zBVHsGl-YBg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" />
+
+---
+layout: problem
 title: azurerm_app_service deprecation
+type: warning
 ---
 
 This resource has been deprecated in version 3.0 of the AzureRM provider and will be removed in version 4.0. Please use azurerm_linux_web_app and azurerm_windows_web_app resources instead.

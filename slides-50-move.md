@@ -1,8 +1,13 @@
 ---
-layout: section
+layout: image-right
+image: ian-taylor-jOqJbvo1P9g-unsplash.jpg
 ---
 
 # Moving resources
+
+<PhotoCredit authorLink="https://unsplash.com/@carrier_lost?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+authorName="Ian Taylor"
+unsplashLink="https://unsplash.com/photos/blue-and-red-cargo-ship-on-sea-during-daytime-jOqJbvo1P9g?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" />
 
 ---
 
@@ -153,12 +158,23 @@ resource "azurerm_app_service" "appservice" {
 ````
 
 ---
+layout: image
+image: /timo-volz-ZlFKIG6dApg-unsplash.jpg
+backgroundSize: contain
+---
+
+<PhotoCredit
+authorLink="https://unsplash.com/@magict1911?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+authorName="Timo Volz"
+unsplashLink="https://unsplash.com/photos/orange-cat-stretching-on-white-surface-ZlFKIG6dApg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" />
+
+---
 layout: problem
+type: warning
+title: "Warning: Deprecated Resource"
 ---
 
 # What's this?
-
-Warning: Deprecated Resource
 
    with azurerm_app_service.appservice,
    on app-service.tf line 6, in resource "azurerm_app_service" "appservice":
