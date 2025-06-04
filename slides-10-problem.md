@@ -1,5 +1,6 @@
 ---
-layout: section
+layout: image-right
+image: /hans-peter-gauster-3y1zF4hIPCg-unsplash.jpg
 ---
 
 # The Problem
@@ -7,6 +8,13 @@ layout: section
 * Three separate environments in Azure (Dev/Test/Prod)
 * Some automation has been used, but not consistently
 * There may be manual configuration changes present
+
+<div style="font-size: 0.8em; color: white; position: absolute; bottom: 1.5em; right: 2em; width: 100%; text-align: right;">
+  Photo by <a href="https://unsplash.com/@sloppyperfectionist?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Hans-Peter Gauster</a> on <a href="https://unsplash.com/photos/stack-of-jigsaw-puzzle-pieces-3y1zF4hIPCg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+</div>
+
+<PhotoCredit authorLink="https://unsplash.com/@sloppyperfectionist?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" authorName="Hans-Peter Gauster"
+unsplashLink="https://unsplash.com/photos/stack-of-jigsaw-puzzle-pieces-3y1zF4hIPCg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" />
 
 ---
 zoom: 0.8

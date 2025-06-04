@@ -2,6 +2,8 @@
 
 Code from the presentation 'Order from chaos - Importing brownfield Azure applications into Terraform'
 
+Stock images from <https://unsplash.com/>
+
 ## Example brownfield infrastructure
 
 - Multiple environments with configuration differences

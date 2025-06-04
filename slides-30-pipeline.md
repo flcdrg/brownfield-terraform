@@ -4,6 +4,10 @@ layout: section
 
 # The new Terraform and pipeline
 
+![Pipeline](/jacob-jensen-Gv5C_8bQ5Ro-unsplash.jpg){style="width: 20%; right: 2em; position: absolute"}
+
+Photo by <a href="https://unsplash.com/@jjensen_photogrpahy?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Jacob Jensen</a> on <a href="https://unsplash.com/photos/bare-trees-under-cloudy-sky-during-daytime-Gv5C_8bQ5Ro?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+
 ---
 
 # Terraform variables

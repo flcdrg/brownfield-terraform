@@ -63,9 +63,8 @@ Terraform will perform the following actions:
 
 ---
 layout: problem
+heading: But hang on. Test environment has failed!
 ---
-
-# But hang on. Test environment has failed!
 
 While attempting to import an existing object to "azurerm_service_plan.func_plan", the provider detected that no object exists with the given id. Only pre-existing objects can be imported; check that the id is correct and that it is associated with the provider's configured region or endpoint, or use "terraform apply" to create a new remote object for this resource.
 
