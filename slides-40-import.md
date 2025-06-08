@@ -1,8 +1,16 @@
 ---
-layout: section
+layout: image-right
+image: /wolfgang-weiser--qLUgz9ZYYs-unsplash.jpg
 ---
 
 # Importing
+
+<PhotoCredit
+authorLink="https://unsplash.com/@hamburgmeinefreundin?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+authorName="Wolfgang Weiser"
+unsplashLink="https://unsplash.com/photos/a-large-cargo-ship-loaded-with-lots-of-containers--qLUgz9ZYYs?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+align="right"
+/>
 
 ---
 

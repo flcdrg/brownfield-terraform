@@ -11,15 +11,20 @@ drawings:
 transition: fade
 # enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
+layout: cover
 ---
 
 # Order from chaos
 
 Importing brownfield Azure applications into Terraform
 
-<div @click="$slidev.nav.next" class="mt-12 py-1" hover:bg="white op-10">
+![Order and chaos](/brett-jordan-M3cxjDNiLlQ-unsplash.jpg){style="width: 40%; height: auto;"}
+
+Photo by <a href="https://unsplash.com/@brett_jordan?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Brett Jordan</a> on <a href="https://unsplash.com/photos/brown-wooden-letter-blocks-on-white-surface-M3cxjDNiLlQ?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+
+<!-- <div @click="$slidev.nav.next" class="mt-12 py-1" hover:bg="white op-10">
   Press Space for next page <carbon:arrow-right />
-</div>
+</div> -->
 
 <div class="abs-br m-6 text-xl">
   <button @click="$slidev.nav.openInEditor" title="Open in Editor" class="slidev-icon-btn">
@@ -69,6 +74,9 @@ src: ./slides-60-migrate.md
 ---
 
 ---
+layout: image-right
+image: /jeshoots-com-__ZMnefoI3k-unsplash.jpg
+---
 
 # Clean up
 
@@ -79,10 +87,30 @@ After changes have been applied to all environments
 * Remove `import` blocks
 * And deploy again. Terraform should not want to make any changes.
 
+<PhotoCredit
+authorLink="https://unsplash.com/@jeshoots?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+authorName="JESHOOTS.COM"
+unsplashLink="https://unsplash.com/photos/person-holding-yellow-plastic-spray-bottle-__ZMnefoI3k?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" />
+
+---
+layout: image-right
+image: /carpenters.jpg
+---
+
+# And we're done?
+
+<!-- 
+
+No! We've only just begun!
+
+- Now Infra is managed by Terraform we can start to resolve inconsistencies
+- Introduce changes and new resources with confidence
+- Remove hardcoded names from app deployments etc.
+
+-->
+
 ---
 layout: end
 ---
-
-# And we're done!
 
 <QRCode value="https://github.com/flcdrg/brownfield-terraform/" color="#FFFFFF" />

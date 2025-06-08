@@ -242,9 +242,14 @@ aztfexport mapping-file \
 ```
 
 <!--
+- Hashicorp Configuration Language
 - hcl-only (Only generate .tf files, not state file etc)
 - also generate imports for resources
 -->
+
+---
+layout: image-right
+image: /nathan-dumlao-kDxqbAvEBwI-unsplash.jpg
 
 ---
 
@@ -253,8 +258,68 @@ aztfexport mapping-file \
 * For Test and Prod (and any other environments)
 * Look for any new resources that don't exist in dev
 
+<PhotoCredit
+  authorLink="https://unsplash.com/@nate_dumlao?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+  authorName="Nathan Dumlao"
+  unsplashLink="https://unsplash.com/photos/a-person-holding-their-hands-under-a-stream-of-water-kDxqbAvEBwI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+  />
+
+---
+# layout: image
+# backgroundSize: 70%
 ---
 
-# Alternatives
+# Export from the Azure Portal?
 
-* Azure Portal export to Terraform (currently private preview)
+![Screenshot](/portal-terraform-export1.png)
+
+---
+layout: image
+image: /rachel-fang-dRMb4SVAoJY-unsplash.jpg
+---
+
+<PhotoCredit authorLink="https://unsplash.com/@rachf_?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+authorName="Rachel Fang"
+unsplashLink="https://unsplash.com/photos/a-white-cat-with-its-mouth-open-dRMb4SVAoJY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" />
+
+---
+layout: problem
+title: Error
+---
+
+```text
+getting resource provider Microsoft.AzureTerraform: GET https://management.azure.com/subscriptions/b4b2e7e9-66e7-46b5-a56b-cce2b50011d4/providers/Microsoft.AzureTerraform
+--------------------------------------------------------------------------------
+RESPONSE 401: 401 Unauthorized
+ERROR CODE: InvalidAuthenticationToken
+--------------------------------------------------------------------------------
+{
+  "error": {
+    "code": "InvalidAuthenticationToken",
+    "message": "The received access token is not valid: at least one of the claims 'puid' or 'altsecid' or 'oid' should be present. If you are accessing as application please make sure service principal is properly created in the tenant."
+  }
+}
+--------------------------------------------------------------------------------
+. Refer to documentation how to register at https://aka.ms/AzureTerraformRPRegistration
+```
+
+---
+
+# Solution
+
+You need to register `Microsoft.AzureTerraform` provider
+
+<QRCode value="https://learn.microsoft.com/en-us/azure/developer/terraform/azure-export-for-terraform/resource-provider-overview?WT.mc_id=DOP-MVP-5001655#registration" />
+
+---
+title: Terraform export in Portal
+layout: image
+image: /portal-terraform-export2.png
+backgroundSize: 70%
+---
+
+<!--
+- Not all resources are supported at the moment for AzureRM
+- eg. App Configuration fails
+- AzApi will probably work though
+-->

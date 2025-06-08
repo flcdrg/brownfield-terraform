@@ -1,5 +1,6 @@
 ---
-layout: section
+layout: image-right
+image: /hans-peter-gauster-3y1zF4hIPCg-unsplash.jpg
 ---
 
 # The Problem
@@ -7,6 +8,13 @@ layout: section
 * Three separate environments in Azure (Dev/Test/Prod)
 * Some automation has been used, but not consistently
 * There may be manual configuration changes present
+
+<div style="font-size: 0.8em; color: white; position: absolute; bottom: 1.5em; right: 2em; width: 100%; text-align: right;">
+  Photo by <a href="https://unsplash.com/@sloppyperfectionist?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Hans-Peter Gauster</a> on <a href="https://unsplash.com/photos/stack-of-jigsaw-puzzle-pieces-3y1zF4hIPCg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+</div>
+
+<PhotoCredit authorLink="https://unsplash.com/@sloppyperfectionist?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" authorName="Hans-Peter Gauster"
+unsplashLink="https://unsplash.com/photos/stack-of-jigsaw-puzzle-pieces-3y1zF4hIPCg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" />
 
 ---
 zoom: 0.8
@@ -216,8 +224,20 @@ resource "azurerm_app_service" "appservice" {
 ```
 
 ---
-layout: fact
+layout: image
+image: /nick-chalkiadakis-zBVHsGl-YBg-unsplash.jpg
+backgroundSize: contain
+---
+
+<PhotoCredit
+authorLink="https://unsplash.com/@chalkian?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+authorName="Nick Chalkiadakis"
+unsplashLink="https://unsplash.com/photos/orange-tabby-cat-peeping-on-white-textile-zBVHsGl-YBg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" />
+
+---
+layout: problem
 title: azurerm_app_service deprecation
+type: warning
 ---
 
 This resource has been deprecated in version 3.0 of the AzureRM provider and will be removed in version 4.0. Please use azurerm_linux_web_app and azurerm_windows_web_app resources instead.
