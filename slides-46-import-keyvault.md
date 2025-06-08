@@ -21,7 +21,7 @@ resource "azurerm_key_vault" "res-3" {
 ```
 
 <!-- Use data resource references -->
-```hcl {*}
+```hcl {2-3,8,10,13}
 import {
   id = "/subscriptions/${data.azurerm_client_config.client.subscription_id}/resourceGroups/
     ${data.azurerm_resource_group.group.name}/providers/Microsoft.KeyVault/vaults/kv-bf-dev-je7v-aue"

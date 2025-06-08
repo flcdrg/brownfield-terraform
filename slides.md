@@ -93,9 +93,24 @@ authorName="JESHOOTS.COM"
 unsplashLink="https://unsplash.com/photos/person-holding-yellow-plastic-spray-bottle-__ZMnefoI3k?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" />
 
 ---
-layout: end
+layout: image-right
+image: /carpenters.jpg
 ---
 
-# And we're done!
+# And we're done?
+
+<!-- 
+
+No! We've only just begun!
+
+- Now Infra is managed by Terraform we can start to resolve inconsistencies
+- Introduce changes and new resources with confidence
+- Remove hardcoded names from app deployments etc.
+
+-->
+
+---
+layout: end
+---
 
 <QRCode value="https://github.com/flcdrg/brownfield-terraform/" color="#FFFFFF" />

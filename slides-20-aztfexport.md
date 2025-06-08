@@ -242,6 +242,7 @@ aztfexport mapping-file \
 ```
 
 <!--
+- Hashicorp Configuration Language
 - hcl-only (Only generate .tf files, not state file etc)
 - also generate imports for resources
 -->
